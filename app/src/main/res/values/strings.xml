@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RecyclePlasticChecker</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btCodeCheck">CodeCheck</string>
+    <string name="fragAbout">About</string>
+    <string name="fragRules">Rules</string>
+    <string name="btRedeem">Redeem</string>
+    <string name="btQuiz">Quiz</string>
+    <string name="btProfile">Profile</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+</resources>

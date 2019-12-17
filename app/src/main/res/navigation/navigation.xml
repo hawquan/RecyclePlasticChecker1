@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/home">
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.recycleplasticchecker.Home"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_codeCheck"
+            app:destination="@id/codeCheck"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_home_to_quiz"
+            app:destination="@id/quiz"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_home_to_redeem"
+            app:destination="@id/redeem"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_home_to_profile"
+            app:destination="@id/profile"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/codeCheck"
+        android:name="com.example.recycleplasticchecker.CodeCheck"
+        android:label="Code Check"
+        tools:layout="@layout/fragment_code_check" />
+    <fragment
+        android:id="@+id/quiz"
+        android:name="com.example.recycleplasticchecker.Quiz"
+        android:label="Quiz"
+        tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/redeem"
+        android:name="com.example.recycleplasticchecker.Redeem"
+        android:label="Redeem"
+        tools:layout="@layout/fragment_redeem" />
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.recycleplasticchecker.Register"
+        android:label="Register"
+        tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.recycleplasticchecker.Login"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.recycleplasticchecker.Profile"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/about"
+        android:name="com.example.recycleplasticchecker.About"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/rules"
+        android:name="com.example.recycleplasticchecker.Rules"
+        android:label="Rules"
+        tools:layout="@layout/fragment_rules" />
+</navigation>
