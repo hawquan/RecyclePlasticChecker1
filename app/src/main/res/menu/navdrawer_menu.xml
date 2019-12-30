@@ -14,4 +14,8 @@
     <item
         android:id="@+id/about"
         android:title="@string/fragAbout" />
+
+    <item
+        android:id="@+id/codeCheck"
+        android:title="@string/code_check" />
 </menu>

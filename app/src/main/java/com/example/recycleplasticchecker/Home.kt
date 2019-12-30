@@ -3,6 +3,7 @@ package com.example.recycleplasticchecker
 
 import android.os.Bundle
 import android.view.*
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil

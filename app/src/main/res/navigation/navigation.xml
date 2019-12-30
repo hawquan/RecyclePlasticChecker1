@@ -11,8 +11,7 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_codeCheck"
-            app:destination="@id/codeCheck"
-            app:popUpTo="@+id/home"
+            app:destination="@+id/codeCheck"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_home_to_quiz"

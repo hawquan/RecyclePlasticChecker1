@@ -11,4 +11,7 @@
     <string name="btProfile">Profile</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="testing_text">testing</string>
+    <string name="detect">DETECT</string>
+    <string name="code_check">CodeCheck</string>
 </resources>
