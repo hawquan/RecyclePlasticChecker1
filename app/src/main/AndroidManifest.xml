@@ -3,6 +3,8 @@
     package="com.example.recycleplasticchecker">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -11,17 +13,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
 
             <meta-data
                 android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-                android:value="label"/>
+                android:value="label"
+                />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCu5Znj9teBNaxS3qw1__-ebBHrf7g-mXs"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
 
 </manifest>

@@ -28,6 +28,9 @@
             app:destination="@id/profile"
             app:popUpTo="@+id/home"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_home_to_recycleBinLocation"
+            app:destination="@+id/recycleBinLocation" />
     </fragment>
     <fragment
         android:id="@+id/codeCheck"
@@ -69,4 +72,9 @@
         android:name="com.example.recycleplasticchecker.Rules"
         android:label="Rules"
         tools:layout="@layout/fragment_rules" />
+    <fragment
+        android:id="@+id/recycleBinLocation"
+        android:name="com.example.recycleplasticchecker.RecycleBinLocation"
+        android:label="fragment_recycle_bin_location"
+        tools:layout="@layout/fragment_recycle_bin_location" />
 </navigation>

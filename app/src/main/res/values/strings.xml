@@ -14,4 +14,5 @@
     <string name="testing_text">testing</string>
     <string name="detect">DETECT</string>
     <string name="code_check">CodeCheck</string>
+    <string name="btLocation">Location</string>
 </resources>

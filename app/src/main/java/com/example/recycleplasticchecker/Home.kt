@@ -3,9 +3,7 @@ package com.example.recycleplasticchecker
 
 import android.os.Bundle
 import android.view.*
-import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -36,6 +34,10 @@ class Home : Fragment() {
 
         binding.btProfile.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_home_to_profile)
+        }
+
+        binding.btLocation.setOnClickListener { view : View ->
+            view.findNavController().navigate(R.id.action_home_to_recycleBinLocation)
         }
         setHasOptionsMenu(true)
         return binding.root

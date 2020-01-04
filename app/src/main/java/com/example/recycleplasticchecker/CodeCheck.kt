@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
-import androidx.core.graphics.green
 import com.example.recycleplasticchecker.Helper.InternetCheck
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ml.vision.FirebaseVision
@@ -25,7 +23,7 @@ import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
 import com.wonderkiln.camerakit.*
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.fragment_code_check.*
-import kotlinx.android.synthetic.main.fragment_code_check.view.*
+
 
 
 /**
@@ -137,7 +135,6 @@ class CodeCheck : Fragment() {
     }
 
     private fun processResultFromCloud(result: List<FirebaseVisionCloudLabel>) {
-        //Toast.makeText(activity,"hahaha: ",Toast.LENGTH_SHORT).show()
         for(label:FirebaseVisionCloudLabel in result)
             Toast.makeText(activity,"Cloud result: " +label.label,Toast.LENGTH_SHORT).show()
         waitingDialog.dismiss()
