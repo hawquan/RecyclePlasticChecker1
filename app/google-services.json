@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "390254136315",
+    "firebase_url": "https://recycleplasticchecker1.firebaseio.com",
+    "project_id": "recycleplasticchecker1",
+    "storage_bucket": "recycleplasticchecker1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390254136315:android:9ce7f6bfc198e0438dd95e",
+        "android_client_info": {
+          "package_name": "com.example.recycleplasticchecker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390254136315-vclg4mthno7aakna2rem4aqo416s0h0u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycleplasticchecker",
+            "certificate_hash": "3a00892149022da5585063e5950852e3e8c93500"
+          }
+        },
+        {
+          "client_id": "390254136315-e9upc9oql1l3qf6525k5srkha4rp1t0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu5Znj9teBNaxS3qw1__-ebBHrf7g-mXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390254136315-e9upc9oql1l3qf6525k5srkha4rp1t0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
