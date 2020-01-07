@@ -42,7 +42,6 @@ class Register : Fragment() {
 
         button.setOnClickListener{
             register()
-            view.findNavController().navigate(R.id.action_register_to_login)
         }
 
         textView2.setOnClickListener{
@@ -84,6 +83,7 @@ class Register : Fragment() {
 
         database.child(id.toString()).setValue(account).addOnCompleteListener {
             Toast.makeText(activity, "Register Successfully", Toast.LENGTH_SHORT).show()
+            view!!.findNavController().navigate(R.id.action_register_to_login)
         }
     }
 }
