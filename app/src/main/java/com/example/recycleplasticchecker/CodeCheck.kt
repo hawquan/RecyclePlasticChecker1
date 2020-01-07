@@ -14,7 +14,7 @@ import com.example.recycleplasticchecker.Helper.InternetCheck
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
-import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabel
+/*import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabel
 import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import com.google.firebase.ml.vision.label.FirebaseVisionLabel
@@ -24,7 +24,7 @@ import com.wonderkiln.camerakit.*
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.fragment_code_check.*
 
-
+*/
 
 /**
  * A simple [Fragment] subclass.
@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.fragment_code_check.*
 class CodeCheck : Fragment() {
 
 
-    lateinit var waitingDialog: AlertDialog
+    /*lateinit var waitingDialog: AlertDialog
 
     override fun onResume(){
         super.onResume()
@@ -82,7 +82,7 @@ class CodeCheck : Fragment() {
 
         })
 
-    }
+    }*/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -92,7 +92,7 @@ class CodeCheck : Fragment() {
 
 
 
-    private fun runDetector(bitmap: Bitmap?) {
+   /* private fun runDetector(bitmap: Bitmap?) {
         val image: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(bitmap!!)
 
         InternetCheck(object:InternetCheck.Consumer{
@@ -139,7 +139,7 @@ class CodeCheck : Fragment() {
             Toast.makeText(activity,"Cloud result: " +label.label,Toast.LENGTH_SHORT).show()
         waitingDialog.dismiss()
     }
-
+*/
 
 }
 
