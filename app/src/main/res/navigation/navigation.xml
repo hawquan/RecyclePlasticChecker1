@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_home_self"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_home_to_quizStart"
+            app:destination="@id/quizStart" />
     </fragment>
     <fragment
         android:id="@+id/codeCheck"
@@ -47,7 +50,14 @@
         android:id="@+id/quiz"
         android:name="com.example.recycleplasticchecker.Quiz"
         android:label="Quiz"
-        tools:layout="@layout/fragment_quiz" />
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quiz_to_quizLose"
+            app:destination="@id/quizLose" />
+        <action
+            android:id="@+id/action_quiz_to_quizWon"
+            app:destination="@id/quizWon" />
+    </fragment>
     <fragment
         android:id="@+id/redeem"
         android:name="com.example.recycleplasticchecker.Redeem"
@@ -94,6 +104,35 @@
         android:name="com.example.recycleplasticchecker.RecycleBinLocation"
         android:label="fragment_recycle_bin_location"
         tools:layout="@layout/fragment_recycle_bin_location" />
+    <fragment
+        android:id="@+id/quizLose"
+        android:name="com.example.recycleplasticchecker.quiz_won_lose.QuizLose"
+        android:label="fragment_quiz_lose"
+        tools:layout="@layout/fragment_quiz_lose" >
+        <action
+            android:id="@+id/action_quizLose_to_quiz"
+            app:destination="@id/quiz" />
+        <action
+            android:id="@+id/action_quizLose_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizWon"
+        android:name="com.example.recycleplasticchecker.quiz_won_lose.QuizWon"
+        android:label="fragment_quiz_won"
+        tools:layout="@layout/fragment_quiz_won" >
+        <action
+            android:id="@+id/action_quizWon_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizStart"
+        android:name="com.example.recycleplasticchecker.quiz_won_lose.QuizStart"
+        android:label="fragment_quiz_start">
+        <action
+            android:id="@+id/action_quizStart_to_quiz"
+            app:destination="@id/quiz" />
+    </fragment>
     <fragment
         android:id="@+id/plasticRecycleCheck"
         android:name="com.example.recycleplasticchecker.PlasticRecycleCheck"

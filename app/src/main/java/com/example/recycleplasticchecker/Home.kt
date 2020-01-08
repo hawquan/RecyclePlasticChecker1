@@ -48,6 +48,8 @@ class Home : Fragment() {
             view.findNavController().navigate(R.id.action_home_to_codeCheck)
         }
 
+        binding.btQuiz.setOnClickListener { view : View ->
+            view.findNavController().navigate(R.id.action_home_to_quizStart)
         binding.btQuiz.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_home_to_quiz)
         }
