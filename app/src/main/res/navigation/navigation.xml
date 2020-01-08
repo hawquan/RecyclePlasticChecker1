@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_home_to_plasticRecycleCheck"
             app:destination="@+id/plasticRecycleCheck" />
+        <action
+            android:id="@+id/action_home_self"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/codeCheck"
@@ -96,4 +99,13 @@
         android:name="com.example.recycleplasticchecker.PlasticRecycleCheck"
         android:label="fragment_plastic_recycle_check"
         tools:layout="@layout/fragment_plastic_recycle_check" />
+    <fragment
+        android:id="@+id/logout"
+        android:name="com.example.recycleplasticchecker.Logout"
+        android:label="fragment_logout"
+        tools:layout="@layout/fragment_logout" >
+        <action
+            android:id="@+id/action_logout_to_home"
+            app:destination="@id/home" />
+    </fragment>
 </navigation>

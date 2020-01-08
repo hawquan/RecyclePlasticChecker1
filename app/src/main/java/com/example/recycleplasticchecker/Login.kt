@@ -1,15 +1,19 @@
 package com.example.recycleplasticchecker
 
 
+import android.content.ClipData
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -32,6 +36,8 @@ class  Login : Fragment() {
     lateinit var btnLogin: Button
     lateinit var linkRegisterPage: TextView
     lateinit var mAuth : FirebaseAuth
+    lateinit var navMenu : Menu
+    lateinit var navigationView : NavigationView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +46,10 @@ class  Login : Fragment() {
         editPassword= activity!!.findViewById(R.id.editPassword)
         btnLogin = activity!!.findViewById(R.id.btnLogin)
         linkRegisterPage = activity!!.findViewById(R.id.linkRegisterPage)
+
+        //to hide item in navigation once logged in
+        navigationView = activity!!.findViewById(R.id.navView)
+        navMenu = navigationView.menu
 
         btnLogin.setOnClickListener() {
             login()
@@ -72,7 +82,7 @@ class  Login : Fragment() {
 
         if(!isEmailValid(username)) {
             //Login with username and password
-            val database = FirebaseDatabase.getInstance().getReference()
+            val database = FirebaseDatabase.getInstance().reference
 
             database.child("Users").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -80,9 +90,13 @@ class  Login : Fragment() {
                         val account = h.getValue(Account::class.java)
                         val username1 = account!!.username
                         val password1 = account.password
+                        val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
+
+                            mAuth.signInWithEmailAndPassword(email1, password)
                             Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
+                            LoginSuccessful()
                             view!!.findNavController().navigate(R.id.action_login_to_home)
                         } else {
                             Toast.makeText(
@@ -103,6 +117,7 @@ class  Login : Fragment() {
                 override fun onComplete(task: Task<AuthResult>) {
                     if(task.isSuccessful){
                         Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
+                        LoginSuccessful()
                         view!!.findNavController().navigate(R.id.action_login_to_home)
 
                     }else{
@@ -111,6 +126,14 @@ class  Login : Fragment() {
                 }
             })
         }
+
+    }
+
+    //to hide item in navigation once logged in
+    private fun LoginSuccessful(){
+        navMenu.findItem(R.id.login).isVisible = false
+        navMenu.findItem(R.id.register).isVisible = false
+        navMenu.findItem(R.id.logout).isVisible = true
     }
 
     private fun isEmailValid(email: String): Boolean {

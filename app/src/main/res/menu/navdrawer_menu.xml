@@ -16,6 +16,8 @@
         android:title="@string/fragAbout" />
 
     <item
-        android:id="@+id/codeCheck"
-        android:title="@string/code_check" />
+        android:id="@+id/logout"
+        android:title="@string/Logout" />
+
+
 </menu>

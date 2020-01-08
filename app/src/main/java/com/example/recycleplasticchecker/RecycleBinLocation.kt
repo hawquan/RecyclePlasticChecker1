@@ -37,6 +37,7 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
     ): View? {
 
 
+        /*
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED  ||
             ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -59,13 +60,14 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
         } else {
             // Permission has already been granted
 
-        }
+        }*/
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recycle_bin_location, container, false)
     }
 
 
+    /*
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
@@ -87,7 +89,7 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
                 // Ignore all other requests.
             }
         }
-    }
+    }*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

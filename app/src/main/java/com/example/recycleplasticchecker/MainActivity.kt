@@ -10,13 +10,18 @@ import com.example.recycleplasticchecker.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import android.util.Log
+import android.view.Menu
+import android.view.View
+import com.google.android.material.navigation.NavigationView
+
 private const val TAG : String = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var mAuth : FirebaseAuth
-
+    lateinit var navMenu: Menu
+    lateinit var navigationView: NavigationView
 
     override fun onStart() {
         super.onStart()
@@ -38,6 +43,21 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this,navController, drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
+
+        navigationView = this.findViewById(R.id.navView)
+        navMenu = navigationView.menu
+        //disable logout if no user logged in
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            navMenu.findItem(R.id.logout).isVisible = false
+            navMenu.findItem(R.id.login).isVisible = true
+            navMenu.findItem(R.id.register).isVisible = true
+            this.findViewById<View>(R.id.profile).isEnabled = false
+        }
+        else{
+            navMenu.findItem(R.id.login).isVisible = false
+            navMenu.findItem(R.id.register).isVisible = false
+        }
 
     }
 
