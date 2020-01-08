@@ -69,7 +69,7 @@ class Quiz : Fragment() {
             answers = listOf("Soda bottle", "Paper plates", "plastic spoon", "Zip lock bags")
         ),
         Question(
-            text = "WRe-processin material to make another product?",
+            text = "Re-processing material to make another product?",
             answers = listOf("Recycle", "Reduce", "Reuse", "Buying")
         )
     )
@@ -119,12 +119,12 @@ class Quiz : Fragment() {
                     } else {
                         // We've won!  Navigate to the gameWonFragment.
                         view.findNavController()
-                            .navigate(R.id.home)
+                            .navigate(R.id.action_quiz_to_quizWon)
                     }
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
                     view.findNavController()
-                        .navigate(R.id.home)
+                        .navigate(R.id.action_quiz_to_quizLose)
                 }
             }
 

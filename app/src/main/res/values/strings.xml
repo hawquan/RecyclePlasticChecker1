@@ -16,6 +16,10 @@
     <string name="code_check">CodeCheck</string>
     <string name="btLocation">Location</string>
     <string name="submit_button">Submit</string>
-    <string name="title_Recycle_question">Recycle Quiz (%1$d/%2$d)</string>
+    <string name="title_Recycle_question">Recycle Quiz(%1$d/%2$d)</string>
     <string name="about_text">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVersion 1.0\n\nRecycle Plastic Checker will help you to identify what plastic can recycled or non.\n</string>
+    <string name="ClickToStart">Click To Start</string>
+    <string name="BackHome">Click To Back Home</string>
+    <string name="TryAgain">Try Again</string>
+    <string name="GoHome">Back To Home</string>
 </resources>

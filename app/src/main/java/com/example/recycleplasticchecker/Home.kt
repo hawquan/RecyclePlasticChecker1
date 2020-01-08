@@ -25,7 +25,7 @@ class Home : Fragment() {
         }
 
         binding.btQuiz.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_home_to_quiz)
+            view.findNavController().navigate(R.id.action_home_to_quizStart)
         }
 
         binding.btRedeem.setOnClickListener { view : View ->
