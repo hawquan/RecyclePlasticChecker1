@@ -14,7 +14,13 @@ import com.example.recycleplasticchecker.databinding.FragmentHomeBinding
  */
 class Home : Fragment() {
 
+
+
+
+
     override fun onCreateView(
+
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater,
