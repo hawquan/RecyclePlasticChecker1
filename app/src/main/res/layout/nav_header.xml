@@ -6,7 +6,7 @@
     android:id="@+id/navHeader"
     android:layout_width="match_parent"
     android:layout_height="192dp"
-    android:background="@drawable/Webp"
+    android:background="@drawable/capture"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
