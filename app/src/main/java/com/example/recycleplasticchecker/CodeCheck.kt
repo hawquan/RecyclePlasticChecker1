@@ -1,30 +1,25 @@
 package com.example.recycleplasticchecker
 
 
+import androidx.fragment.app.Fragment
+import android.view.*
+import android.widget.Toast
 import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import com.example.recycleplasticchecker.Helper.InternetCheck
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.cloud.FirebaseVisionCloudDetectorOptions
-/*import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabel
-import com.google.firebase.ml.vision.cloud.label.FirebaseVisionCloudLabelDetector
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.google.firebase.ml.vision.label.FirebaseVisionLabel
-import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetector
-import com.google.firebase.ml.vision.label.FirebaseVisionLabelDetectorOptions
+import com.google.firebase.ml.vision.label.FirebaseVisionCloudImageLabelerOptions
+import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel
+import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler
+import com.google.firebase.ml.vision.label. FirebaseVisionOnDeviceImageLabelerOptions
 import com.wonderkiln.camerakit.*
 import dmax.dialog.SpotsDialog
 import kotlinx.android.synthetic.main.fragment_code_check.*
 
-*/
 
 /**
  * A simple [Fragment] subclass.
@@ -33,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_code_check.*
 class CodeCheck : Fragment() {
 
 
-    /*lateinit var waitingDialog: AlertDialog
+    lateinit var waitingDialog: AlertDialog
 
     override fun onResume(){
         super.onResume()
@@ -82,7 +77,7 @@ class CodeCheck : Fragment() {
 
         })
 
-    }*/
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -92,19 +87,19 @@ class CodeCheck : Fragment() {
 
 
 
-   /* private fun runDetector(bitmap: Bitmap?) {
+    private fun runDetector(bitmap: Bitmap?) {
         val image: FirebaseVisionImage = FirebaseVisionImage.fromBitmap(bitmap!!)
 
         InternetCheck(object:InternetCheck.Consumer{
             override fun accept(isConnected: Boolean?) {
                 if(isConnected!!){
                     //use Cloud Detector
-                    val options : FirebaseVisionCloudDetectorOptions = FirebaseVisionCloudDetectorOptions.Builder()
-                        .setMaxResults(1) //Get highest result
+                    val options = FirebaseVisionCloudImageLabelerOptions.Builder()
+                        .setConfidenceThreshold(0.8f)
                         .build()
 
-                    val detector: FirebaseVisionCloudLabelDetector = FirebaseVision.getInstance().getVisionCloudLabelDetector(options)
-                    val task : Task<List<FirebaseVisionCloudLabel>> = detector.detectInImage(image)
+                    val detector: FirebaseVisionImageLabeler = FirebaseVision.getInstance().getCloudImageLabeler(options)
+                    val task : Task<List<FirebaseVisionImageLabel>> = detector.processImage(image)
                     task
                         .addOnFailureListener{e -> Log.d("ERROR",e.message)}
                         .addOnSuccessListener{ result -> processResultFromCloud(result) }
@@ -112,13 +107,13 @@ class CodeCheck : Fragment() {
                 }
                 else{
                     //use on Device
-                    val options = FirebaseVisionLabelDetectorOptions.Builder()
+                    val options = FirebaseVisionOnDeviceImageLabelerOptions.Builder()
                         .setConfidenceThreshold(0.8f) //Get highest result
                         .build()
 
-                    val detector: FirebaseVisionLabelDetector = FirebaseVision.getInstance().getVisionLabelDetector(options)
+                    val detector: FirebaseVisionImageLabeler = FirebaseVision.getInstance().getOnDeviceImageLabeler(options)
 
-                    detector.detectInImage(image)
+                    detector.processImage(image)
                         .addOnFailureListener{e -> Log.d("ERROR",e.message)}
                         .addOnSuccessListener { result -> processResultFromDevice(result) }
 
@@ -128,19 +123,23 @@ class CodeCheck : Fragment() {
         })
     }
 
-    private fun processResultFromDevice(result: List<FirebaseVisionLabel>) {
-        for(label:FirebaseVisionLabel in result)
-            Toast.makeText(activity,"Device result: " +label.label,Toast.LENGTH_SHORT).show()
+    private fun processResultFromDevice(result: List<FirebaseVisionImageLabel>) {
+        for(label:FirebaseVisionImageLabel in result)
+            Toast.makeText(activity,"Device result: " +label.text,Toast.LENGTH_SHORT).show()
         waitingDialog.dismiss()
     }
 
-    private fun processResultFromCloud(result: List<FirebaseVisionCloudLabel>) {
-        for(label:FirebaseVisionCloudLabel in result)
-            Toast.makeText(activity,"Cloud result: " +label.label,Toast.LENGTH_SHORT).show()
+    private fun processResultFromCloud(result: List<FirebaseVisionImageLabel>) {
+        for(label:FirebaseVisionImageLabel in result)
+            Toast.makeText(activity,"Cloud result: " +label.text,Toast.LENGTH_SHORT).show()
         waitingDialog.dismiss()
     }
-*/
+
 
 }
+
+
+
+
 
 

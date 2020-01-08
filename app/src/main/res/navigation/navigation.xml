@@ -14,6 +14,11 @@
             app:destination="@+id/codeCheck"
             app:popUpToInclusive="false" />
         <action
+            android:id="@+id/action_home_to_quiz"
+            app:destination="@id/quiz"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
+        <action
             android:id="@+id/action_home_to_redeem"
             app:destination="@id/redeem"
             app:popUpTo="@+id/home"
@@ -26,6 +31,9 @@
         <action
             android:id="@+id/action_home_to_recycleBinLocation"
             app:destination="@+id/recycleBinLocation" />
+        <action
+            android:id="@+id/action_home_to_plasticRecycleCheck"
+            app:destination="@+id/plasticRecycleCheck" />
         <action
             android:id="@+id/action_home_to_quizStart"
             app:destination="@id/quizStart" />
@@ -122,4 +130,9 @@
             android:id="@+id/action_quizStart_to_quiz"
             app:destination="@id/quiz" />
     </fragment>
+    <fragment
+        android:id="@+id/plasticRecycleCheck"
+        android:name="com.example.recycleplasticchecker.PlasticRecycleCheck"
+        android:label="fragment_plastic_recycle_check"
+        tools:layout="@layout/fragment_plastic_recycle_check" />
 </navigation>

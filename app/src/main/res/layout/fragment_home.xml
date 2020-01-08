@@ -12,63 +12,75 @@
 
         <Button
             android:id="@+id/btCodeCheck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
             android:text="@string/btCodeCheck"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.235"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btQuiz"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btPlasticRecycleCheck"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.112" />
 
         <Button
             android:id="@+id/btRedeem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
             android:text="@string/btRedeem"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.705"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btPlasticRecycleCheck"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/btProfile"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.112" />
 
         <Button
             android:id="@+id/btQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
             android:text="@string/btQuiz"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.235"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/btPlasticRecycleCheck"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.398" />
+            app:layout_constraintVertical_bias="0.275" />
 
         <Button
             android:id="@+id/btProfile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
             android:text="@string/btProfile"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.705"
+            app:layout_constraintEnd_toEndOf="@+id/btPlasticRecycleCheck"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.273" />
 
         <Button
+            android:id="@+id/btPlasticRecycleCheck"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
+            android:text="@string/btPlastic_Recycle_Check"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.452"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.526" />
+
+        <Button
             android:id="@+id/btLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="260dp"
+            android:layout_height="45dp"
             android:text="@string/btLocation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintHorizontal_bias="0.455"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.273" />
+            app:layout_constraintVertical_bias="0.433" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

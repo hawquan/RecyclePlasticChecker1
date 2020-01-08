@@ -39,6 +39,10 @@ class Home : Fragment() {
         binding.btLocation.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_home_to_recycleBinLocation)
         }
+
+        binding.btPlasticRecycleCheck.setOnClickListener { view : View ->
+            view.findNavController().navigate(R.id.action_home_to_plasticRecycleCheck)
+        }
         setHasOptionsMenu(true)
         return binding.root
     }
