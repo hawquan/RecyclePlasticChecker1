@@ -39,16 +39,20 @@ class Home : Fragment() {
         binding.btLocation.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_home_to_recycleBinLocation)
         }
+
+        binding.btPlasticRecycleCheck.setOnClickListener { view : View ->
+            view.findNavController().navigate(R.id.action_home_to_plasticRecycleCheck)
+        }
         setHasOptionsMenu(true)
         return binding.root
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.options_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item!!,
             view!!.findNavController())
                 || super.onOptionsItemSelected(item)

@@ -15,4 +15,5 @@
     <string name="detect">DETECT</string>
     <string name="code_check">CodeCheck</string>
     <string name="btLocation">Location</string>
+    <string name="btPlastic_Recycle_Check">Plastic Recycle Check</string>
 </resources>

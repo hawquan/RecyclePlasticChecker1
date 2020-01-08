@@ -1,7 +1,6 @@
 package com.example.recycleplasticchecker
 
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,26 +12,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.MapsInitializer
-import com.google.android.gms.maps.MapView
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.gms.maps.MapFragment
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.drawable.Drawable
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.gms.maps.model.BitmapDescriptor
-
-
-
-
-
-
 
 
 
@@ -53,8 +36,8 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View? {
 
-        /*
-            // Here, thisActivity is the current activity
+
+        // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED  ||
             ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -76,37 +59,13 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
         } else {
             // Permission has already been granted
 
-            rootView  = inflater.inflate(R.layout.fragment_recycle_bin_location, container, false)
-            mMapView = rootView.findViewById(R.id.mapView) as MapView
-            mMapView.onCreate(savedInstanceState)
-            mMapView.onResume() // needed to get the map to display immediately
+        }
 
-            try {
-                MapsInitializer.initialize(activity!!.applicationContext)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            mMapView.getMapAsync(OnMapReadyCallback { mMap ->
-                googleMap = mMap
-
-                // For showing a move to my location button
-                googleMap.isMyLocationEnabled = true
-
-                // For dropping a marker at a point on the Map
-                val sydney = LatLng(-34.0, 151.0)
-                googleMap.addMarker(MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"))
-
-                // For zooming automatically to the location of the marker
-                val cameraPosition = CameraPosition.Builder().target(sydney).zoom(12f).build()
-                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-            })
-
-        }*/
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recycle_bin_location, container, false)
     }
 
-    /*
+
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
         when (requestCode) {
@@ -128,7 +87,7 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
                 // Ignore all other requests.
             }
         }
-    }*/
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -140,7 +99,7 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
             mMap.clear() //clear old markers
 
             val googlePlex = CameraPosition.builder()
-                .target(LatLng(37.4219999, -122.0862462))
+                .target(LatLng(3.2011968, 101.7169562))
                 .zoom(10f)
                 .bearing(0f)
                 .tilt(45f)
@@ -150,15 +109,14 @@ class RecycleBinLocation : Fragment(), OnMapReadyCallback {
 
             mMap.addMarker(
                 MarkerOptions()
-                    .position(LatLng(37.4219999, -122.0862462))
-                    .title("Spider Man")
+                    .position(LatLng(3.2011968, 101.7169562))
+                    .title("PV16 Parking Lot")
             )
 
             mMap.addMarker(
                 MarkerOptions()
                     .position(LatLng(37.4629101, -122.2449094))
                     .title("Iron Man")
-                    .snippet("His Talent : Plenty of money")
             )
 
             mMap.addMarker(
