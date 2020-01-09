@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.navigation.findNavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
@@ -26,26 +27,26 @@ class ForgetPassword : Fragment() {
     class Users(val name: String, val email: String, val username: String, val password: String, val point: Int)
 
     lateinit var editEmail: EditText
-    lateinit var editPassword: EditText
+    lateinit var editPassword1: EditText
     lateinit var sendEmail: Button
-    lateinit var login: Button
+    lateinit var login1: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         editEmail = activity!!.findViewById(R.id.editEmail)
-        editPassword = activity!!.findViewById(R.id.editPassword)
+        editPassword1 = activity!!.findViewById(R.id.editPassword1)
         sendEmail = activity!!.findViewById(R.id.sendEmail)
-        login = activity!!.findViewById(R.id.login)
+        login1 = activity!!.findViewById(R.id.login1)
 
-        editPassword.isEnabled = false
-        login.isEnabled = false
+        editPassword1.isGone = true
+        login1.isGone = true
 
         sendEmail.setOnClickListener() {
             sendEmail()
         }
 
-        login.setOnClickListener() {
+        login1.setOnClickListener() {
             resetPassword()
         }
     }
@@ -74,8 +75,8 @@ class ForgetPassword : Fragment() {
                         Toast.makeText(activity, "Go to your inbox to complete reset password", Toast.LENGTH_LONG).show()
                         editEmail.isEnabled = false
                         sendEmail.isEnabled = false
-                        editPassword.isEnabled = true
-                        login.isEnabled = true
+                        editPassword1.isGone = false
+                        login1.isGone = false
                     } else {
                         Toast.makeText(activity, "Your email address is invalid", Toast.LENGTH_LONG).show()
                     }
@@ -85,10 +86,10 @@ class ForgetPassword : Fragment() {
 
     private fun resetPassword() {
         val email = editEmail.text.toString().trim()
-        val password = editPassword.text.toString().trim()
+        val password = editPassword1.text.toString().trim()
 
         if (password.isEmpty()) {
-            editPassword.error = "Please enter new password"
+            editPassword1.error = "Please enter new password"
             return
         }
 
