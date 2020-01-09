@@ -31,22 +31,14 @@ class Home : Fragment() {
     lateinit var navigationView: NavigationView
 
 
-
     //Check user logged in
     override fun onStart() {
         super.onStart()
         val user = mAuth.currentUser
         if (user != null) {
-            if (!mAuth.currentUser!!.email.equals("")){
-                navigationView = activity!!.findViewById(R.id.navView)
-                functionForLoggedIn()
-            }
-            else{
-                functionForAnonymous()
-            }
+            functionForLoggedIn()
         } else {
             functionForAnonymous()
-            signInAnonymously()
         }
     }
 
@@ -54,16 +46,9 @@ class Home : Fragment() {
         super.onPause()
         val user = mAuth.currentUser
         if (user != null) {
-            if (!mAuth.currentUser!!.email.equals("")){
-                functionForLoggedIn()
-            }
-            else{
-                functionForAnonymous()
-            }
+            functionForLoggedIn()
         } else {
-
             functionForAnonymous()
-            signInAnonymously()
         }
     }
 
@@ -82,7 +67,7 @@ class Home : Fragment() {
         }
 
         binding.btQuiz.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_home_to_quiz)
+            view.findNavController().navigate(R.id.action_home_to_quizStart)
         }
 
         binding.btRedeem.setOnClickListener { view : View ->
@@ -115,17 +100,6 @@ class Home : Fragment() {
                 || super.onOptionsItemSelected(item)
     }
 
-    private fun signInAnonymously() {
-        mAuth.signInAnonymously().addOnSuccessListener() {
-
-            //display message at nav header
-            navigationView.findViewById<TextView>(R.id.usernameView).text = "Anonymous"
-            navigationView.findViewById<TextView>(R.id.emailView).text = mAuth.currentUser?.uid
-            Toast.makeText(activity,"loggged in Anonymous", Toast.LENGTH_SHORT)
-        }
-            .addOnFailureListener { exception -> Log.e(TAG, "signInAnonymously:FAILURE", exception) }
-    }
-
 
     private fun functionForAnonymous(){
 
@@ -142,6 +116,7 @@ class Home : Fragment() {
         //enable login button and register button
         navMenu.findItem(R.id.login).isVisible = true
         navMenu.findItem(R.id.register).isVisible = true
+
 
 
     }

@@ -17,9 +17,9 @@
     <string name="btLocation">Location</string>
     <string name="submit_button">Submit</string>
     <string name="title_Recycle_question">Recycle Quiz(%1$d/%2$d)</string>
-    <string name="about_text">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVersion 1.0\n\nRecycle Plastic Checker will help you to identify what plastic can recycled or non.\n</string>
+    <string name="about_text">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tVersion 1.0\n\nRecycle Plastic Checker will help you to identify what plastic type can be recycled.\n</string>
     <string name="ClickToStart">Click To Start</string>
-    <string name="BackHome">Click To Back Home</string>
+    <string name="BackHome">Back To Menu</string>
     <string name="TryAgain">Try Again</string>
     <string name="GoHome">Back To Home</string>
     <string name="btPlastic_Recycle_Check">Plastic Recycle Check</string>
@@ -29,9 +29,10 @@
     <string name="ebay">Ebay 15% OFF Voucher Code</string>
     <string name="shopee">Shopee 10% OFF Voucher Code</string>
     <string name="zalora">Zalora 20% OFF Voucher Code</string>
-    <string name="rules_text" >\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tRules\n\n1. First you must register as a member to perform redeem point.\n2. You only can upload 3 pictures per redeem.\n3. You email address must be valid if not you cannot receive point from admin!\n4. The quiz game must be correct 5 question, if you wrong 1 question your game END!  </string>
+    <string name="rules_text">\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tRules\n\n1. First you must register as a member to perform redeem point.\n2. You only can upload 3 pictures per redeem.\n3. You email address must be valid if not you cannot receive point from admin!\n4. The quiz game must be correct 5 question, if you wrong 1 question your game END!  </string>
     <string name="CodeLazada">\t\t\t\t\t\t\t\t\t\t\t\tCODE: LAZADA15</string>
     <string name="CodeZalora">\t\t\t\t\t\t\t\t\t\t\t\tCODE: ZALORA20</string>
     <string name="CodeShoppe">\t\t\t\t\t\t\t\t\t\t\tCODE: SHOPEERM10</string>
     <string name="CodeEbay">\t\t\t\t\t\t\t\t\t\t\t\t\tCODE: EBAY15</string>
+    <string name="SearchSymbolFound">Search Symbol Found</string>
 </resources>

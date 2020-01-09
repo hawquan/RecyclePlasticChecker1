@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.recycleplasticchecker.CodeCheck">
 
+    <Button
+        android:id="@+id/btn_FindSymbol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/btn_detect"
+        android:backgroundTint="#009688"
+        android:text="@string/SearchSymbolFound" />
 
     <Button
         android:id="@+id/btn_detect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="#673AB7"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="@string/detect" />
 
 
     <com.wonderkiln.camerakit.CameraView
         android:id="@+id/camera_view"
-        android:layout_above="@+id/btn_detect"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

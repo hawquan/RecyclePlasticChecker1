@@ -5,10 +5,9 @@
     tools:context="com.example.recycleplasticchecker.Home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/titleConstraint"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+        android:id="@+id/titleConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/btCodeCheck"
