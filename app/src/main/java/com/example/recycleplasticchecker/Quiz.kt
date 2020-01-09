@@ -65,7 +65,7 @@ class Quiz : Fragment() {
             answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
         ),
         Question(
-            text = "Which XML element lets you register an activity with the launcher activity?",
+            text = "Which item can be recycled?",
             answers = listOf("Soda bottle", "Paper plates", "plastic spoon", "Zip lock bags")
         ),
         Question(
