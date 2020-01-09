@@ -13,7 +13,6 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
  * A simple [Fragment] subclass.
@@ -35,7 +34,7 @@ class Register : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editName = activity!!.findViewById(R.id.editName)
+        editName = activity!!.findViewById(R.id.txtName)
         editEmail = activity!!.findViewById(R.id.editEmail)
         editUsername = activity!!.findViewById(R.id.editUsername)
         editPassword = activity!!.findViewById(R.id.editPassword)
