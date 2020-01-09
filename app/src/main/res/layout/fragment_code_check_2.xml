@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CodeCheck_2">
+
+
+    <ImageView
+        android:id="@+id/psBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="196dp"
+        android:src="@drawable/ps_symbol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ppBtn"
+        app:layout_constraintTop_toBottomOf="@+id/ldpeBtn"
+        app:srcCompat="@drawable/ps_symbol" />
+
+    <ImageView
+        android:id="@+id/ppBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/pp_symbol"
+        app:layout_constraintBottom_toTopOf="@+id/otherBtn"
+        app:layout_constraintEnd_toStartOf="@+id/psBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pvcBtn"
+        app:srcCompat="@drawable/pp_symbol" />
+
+    <ImageView
+        android:id="@+id/ldpeBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/ldpe_symbol"
+        app:layout_constraintBottom_toTopOf="@+id/psBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pvcBtn"
+        app:layout_constraintTop_toBottomOf="@+id/hdpeBtn"
+        app:srcCompat="@drawable/ldpe_symbol" />
+
+    <ImageView
+        android:id="@+id/hdpeBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/hdpe_symbol"
+        app:layout_constraintBottom_toTopOf="@+id/ldpeBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/peteBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/hdpe_symbol" />
+
+    <ImageView
+        android:id="@+id/peteBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/pete_symbol"
+        app:layout_constraintBottom_toTopOf="@+id/pvcBtn"
+        app:layout_constraintEnd_toStartOf="@+id/hdpeBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pete_symbol" />
+
+    <ImageView
+        android:id="@+id/pvcBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/pvc_symbol"
+        app:layout_constraintBottom_toTopOf="@+id/ppBtn"
+        app:layout_constraintEnd_toStartOf="@+id/ldpeBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peteBtn"
+        app:srcCompat="@drawable/pvc_symbol" />
+
+    <ImageView
+        android:id="@+id/otherBtn"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@drawable/other_symbol"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ppBtn"
+        app:srcCompat="@drawable/other_symbol" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

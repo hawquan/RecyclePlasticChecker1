@@ -42,6 +42,8 @@ class  Login : Fragment() {
     lateinit var mAuth : FirebaseAuth
     lateinit var navMenu : Menu
     lateinit var navigationView : NavigationView
+    lateinit var btnProfile : Button
+    lateinit var btnRedeem : Button
 
 
     var handler : Handler = Handler()
@@ -67,9 +69,12 @@ class  Login : Fragment() {
         linkRegisterPage = activity!!.findViewById(R.id.linkRegisterPage)
         linkForgetPassword = activity!!.findViewById(R.id.linkForgetPassword)
 
+
         //to hide item in navigation once logged in
         navigationView = activity!!.findViewById(R.id.navView)
         navMenu = navigationView.menu
+        btnProfile = activity!!.findViewById(R.id.btProfile)
+        btnRedeem = activity!!.findViewById(R.id.btRedeem)
 
         btnLogin.setOnClickListener() {
             login()
@@ -117,9 +122,8 @@ class  Login : Fragment() {
                         val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
-
-                            println("hahaha1")
-                            mAuth.signInWithEmailAndPassword(email1, password1)
+                            //mAuth.signInWithEmailAndPassword(email1, password1)
+                            functionForLoggedIn()
                             navigationView.findViewById<TextView>(R.id.usernameView).text = username
                             navigationView.findViewById<TextView>(R.id.emailView).text = email1
                             Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
@@ -135,7 +139,6 @@ class  Login : Fragment() {
             })
         }else{
             //Login with email and password, firebase authentication
-            println("hahaha2")
             LoginWithAuth(username,password)
         }
 
@@ -145,6 +148,7 @@ class  Login : Fragment() {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(object: OnCompleteListener<AuthResult>{
             override fun onComplete(task: Task<AuthResult>) {
                 if(task.isSuccessful){
+                    functionForLoggedIn()
                     navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
                     navigationView.findViewById<TextView>(R.id.emailView).text = email
                     Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
@@ -154,6 +158,23 @@ class  Login : Fragment() {
                 }
             }
     })
+    }
+
+    private fun functionForLoggedIn(){
+
+        //get navigation drawer and the menu
+        navigationView = activity!!.findViewById(R.id.navView)
+        navMenu = navigationView.menu
+
+
+        //enable logout and profile button, redeem button
+        navMenu.findItem(R.id.logout).isVisible = true
+        btnProfile.isEnabled = true
+        btnRedeem.isEnabled = true
+
+        //disable login button and register button
+        navMenu.findItem(R.id.login).isVisible = false
+        navMenu.findItem(R.id.register).isVisible = false
     }
 
     private fun isEmailValid(email: String): Boolean {
