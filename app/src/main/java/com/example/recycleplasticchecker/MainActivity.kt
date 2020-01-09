@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity() {
                 myDialog.dismiss()
             }
         })
+
         myDialog.show()
     }
 
