@@ -80,8 +80,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         btnRedeem.setOnClickListener {
-            redeem()
-            redeemLazada.isGone = false
+            redeem1()
+
         }
         myDialog.show()
 
@@ -100,8 +100,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         btnRedeem.setOnClickListener {
-            redeem()
-            redeemShopee.isGone = false
+            redeem2()
+
         }
         myDialog.show()
 
@@ -120,8 +120,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         btnRedeem.setOnClickListener {
-            redeem()
-            redeemZalora.isGone = false
+            redeem3()
+
         }
         myDialog.show()
     }
@@ -139,13 +139,13 @@ class MainActivity : AppCompatActivity() {
             }
         })
         btnRedeem.setOnClickListener {
-            redeem()
-            redeemEbay.isGone = false
+            redeem4()
+
         }
         myDialog.show()
     }
 
-    fun redeem() {
+    fun redeem1() {
         var count = 1
         user = FirebaseAuth.getInstance().currentUser!!
         uid = user.uid
@@ -171,6 +171,136 @@ class MainActivity : AppCompatActivity() {
                         val currentPoint = user_point.toInt() - 1000
                         val user = User(user_name, user_email, user_username, user_password, currentPoint)
                         database.setValue(user)
+                        redeemLazada.isGone = false
+                        Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
+                        count--
+                    } catch (ex: NumberFormatException) {
+                    }
+
+                }
+                else if(count == 0) {
+                    Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(this@MainActivity, "Your point is insufficient!!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+    }
+    fun redeem2() {
+        var count = 1
+        user = FirebaseAuth.getInstance().currentUser!!
+        uid = user.uid
+        val database = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_name = dataSnapshot.child("name").value.toString()
+                var user_email = dataSnapshot.child("email").value.toString()
+                var user_username = dataSnapshot.child("username").value.toString()
+                var user_password = dataSnapshot.child("password").value.toString()
+                var user_point = dataSnapshot.child("point").value.toString()
+
+                println("hahahaha: " + user_point)
+
+                if (user_point.toInt() >= 1000 && count == 1) {
+                    try {
+                        println("hahahahha : " +count)
+                        val currentPoint = user_point.toInt() - 1000
+                        val user = User(user_name, user_email, user_username, user_password, currentPoint)
+                        database.setValue(user)
+                        redeemShopee.isGone = false
+                        Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
+                        count--
+                    } catch (ex: NumberFormatException) {
+                    }
+
+                }
+                else if(count == 0) {
+                    Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(this@MainActivity, "Your point is insufficient!!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+    }
+    fun redeem3() {
+        var count = 1
+        user = FirebaseAuth.getInstance().currentUser!!
+        uid = user.uid
+        val database = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_name = dataSnapshot.child("name").value.toString()
+                var user_email = dataSnapshot.child("email").value.toString()
+                var user_username = dataSnapshot.child("username").value.toString()
+                var user_password = dataSnapshot.child("password").value.toString()
+                var user_point = dataSnapshot.child("point").value.toString()
+
+                println("hahahaha: " + user_point)
+
+                if (user_point.toInt() >= 1000 && count == 1) {
+                    try {
+                        println("hahahahha : " +count)
+                        val currentPoint = user_point.toInt() - 1000
+                        val user = User(user_name, user_email, user_username, user_password, currentPoint)
+                        database.setValue(user)
+                        redeemZalora.isGone = false
+                        Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
+                        count--
+                    } catch (ex: NumberFormatException) {
+                    }
+
+                }
+                else if(count == 0) {
+                    Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(this@MainActivity, "Your point is insufficient!!", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+    }
+    fun redeem4() {
+        var count = 1
+        user = FirebaseAuth.getInstance().currentUser!!
+        uid = user.uid
+        val database = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_name = dataSnapshot.child("name").value.toString()
+                var user_email = dataSnapshot.child("email").value.toString()
+                var user_username = dataSnapshot.child("username").value.toString()
+                var user_password = dataSnapshot.child("password").value.toString()
+                var user_point = dataSnapshot.child("point").value.toString()
+
+                println("hahahaha: " + user_point)
+
+                if (user_point.toInt() >= 1000 && count == 1) {
+                    try {
+                        println("hahahahha : " +count)
+                        val currentPoint = user_point.toInt() - 1000
+                        val user = User(user_name, user_email, user_username, user_password, currentPoint)
+                        database.setValue(user)
+                        redeemEbay.isGone = false
                         Toast.makeText(this@MainActivity, "Redeem Successfully!!", Toast.LENGTH_SHORT).show()
                         count--
                     } catch (ex: NumberFormatException) {
