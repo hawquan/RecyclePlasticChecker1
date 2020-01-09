@@ -117,8 +117,13 @@ class  Login : Fragment() {
                         val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
-                            LoginWithAuth(email1,password)
-                            break
+
+                            println("hahaha1")
+                            mAuth.signInWithEmailAndPassword(email1, password1)
+                            navigationView.findViewById<TextView>(R.id.usernameView).text = username
+                            navigationView.findViewById<TextView>(R.id.emailView).text = email1
+                            Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
+                            view!!.findNavController().navigate(R.id.action_login_to_home)
                         } else {
                             Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
                         }
@@ -130,6 +135,7 @@ class  Login : Fragment() {
             })
         }else{
             //Login with email and password, firebase authentication
+            println("hahaha2")
             LoginWithAuth(username,password)
         }
 
@@ -149,9 +155,6 @@ class  Login : Fragment() {
             }
     })
     }
-
-
-
 
     private fun isEmailValid(email: String): Boolean {
         val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
