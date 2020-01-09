@@ -31,7 +31,6 @@ class Home : Fragment() {
     lateinit var navigationView: NavigationView
 
 
-
     //Check user logged in
     override fun onStart() {
         super.onStart()
