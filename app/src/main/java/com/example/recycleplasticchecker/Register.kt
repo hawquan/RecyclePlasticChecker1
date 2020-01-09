@@ -13,7 +13,6 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
  * A simple [Fragment] subclass.
@@ -29,30 +28,24 @@ class Register : Fragment() {
     lateinit var editPassword: EditText
     lateinit var editConfirmPassword: EditText
     lateinit var btnRegister: Button
-    lateinit var linkLoginPage: TextView
     lateinit var  progressBar: ProgressBar
     private lateinit var mAuth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editName = activity!!.findViewById(R.id.editName)
+        editName = activity!!.findViewById(R.id.txtName)
         editEmail = activity!!.findViewById(R.id.editEmail)
         editUsername = activity!!.findViewById(R.id.editUsername)
         editPassword = activity!!.findViewById(R.id.editPassword)
         editConfirmPassword = activity!!.findViewById(R.id.editConfirmPassword)
         btnRegister = activity!!.findViewById(R.id.btn_register)
-        linkLoginPage = activity!!.findViewById(R.id.linkLoginPage)
         progressBar = activity!!.findViewById(R.id.progressBar)
         progressBar.visibility = View.GONE
 
 
         btnRegister.setOnClickListener{
             register()
-        }
-
-        linkLoginPage.setOnClickListener{
-            view.findNavController().navigate(R.id.action_register_to_login)
         }
     }
 
