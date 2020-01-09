@@ -23,21 +23,22 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 
 
-private const val PICK_IMAGE  = 1
+private const val PICK_IMAGE = 1
+
 /**
  * A simple [Fragment] subclass.
  */
 class PlasticRecycleCheck : Fragment() {
 
 
-    lateinit var btnUpload : Button
-    lateinit var btnChoose : Button
-    lateinit var alertView :TextView
+    lateinit var btnUpload: Button
+    lateinit var btnChoose: Button
+    lateinit var alertView: TextView
 
-    var ImageList : ArrayList<Uri> =  ArrayList<Uri>()
-    private lateinit var ImageUri : Uri
-    private lateinit var progressDialog : ProgressDialog
-    private var upload_count : Int = 0
+    var ImageList: ArrayList<Uri> = ArrayList<Uri>()
+    private lateinit var ImageUri: Uri
+    private lateinit var progressDialog: ProgressDialog
+    private var upload_count: Int = 0
 
 
     override fun onCreateView(
@@ -58,41 +59,45 @@ class PlasticRecycleCheck : Fragment() {
         progressDialog = ProgressDialog(activity)
         progressDialog.setMessage("Image Upload Please Wait..............")
 
-        btnChoose.setOnClickListener(object : View.OnClickListener{
+        btnChoose.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(p0: View?) {
-                var intent : Intent = Intent(Intent.ACTION_GET_CONTENT)
+                var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
                 intent.setType("image/*")
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-                startActivityForResult(intent,PICK_IMAGE)
+                startActivityForResult(intent, PICK_IMAGE)
             }
         })
 
-        btnUpload.setOnClickListener(object : View.OnClickListener{
+        btnUpload.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(p0: View?) {
 
                 progressDialog.show()
                 alertView.setText("If Loading Takes too long please Press the button again")
-                var ImageFolder : StorageReference = FirebaseStorage.getInstance().reference.child("ImageFolder")
+                var ImageFolder: StorageReference =
+                    FirebaseStorage.getInstance().reference.child("ImageFolder")
 
 
-                while(upload_count < ImageList.size){
+                while (upload_count < ImageList.size) {
 
-                    var IndividualImage : Uri = ImageList.get(upload_count)
-                    var ImageName : StorageReference = ImageFolder.child("Image" +IndividualImage.lastPathSegment)
+                    var IndividualImage: Uri = ImageList.get(upload_count)
+                    var ImageName: StorageReference =
+                        ImageFolder.child("Image" + IndividualImage.lastPathSegment)
 
-                    ImageName.putFile(IndividualImage).addOnSuccessListener( object: OnSuccessListener<UploadTask.TaskSnapshot>{
+                    ImageName.putFile(IndividualImage)
+                        .addOnSuccessListener(object : OnSuccessListener<UploadTask.TaskSnapshot> {
 
-                        override fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
-                            ImageName.downloadUrl.addOnSuccessListener (object: OnSuccessListener<Uri>{
-                                override fun onSuccess(uri: Uri) {
-                                    var url : String = uri.toString()
-                                    StoreLink(url)
-                                }
-                            })
-                        }
-                    })
+                            override fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
+                                ImageName.downloadUrl.addOnSuccessListener(object :
+                                    OnSuccessListener<Uri> {
+                                    override fun onSuccess(uri: Uri) {
+                                        var url: String = uri.toString()
+                                        StoreLink(url)
+                                    }
+                                })
+                            }
+                        })
                     upload_count++
                 }
             }
@@ -100,9 +105,10 @@ class PlasticRecycleCheck : Fragment() {
     }
 
     private fun StoreLink(url: String) {
-        var databasereference : DatabaseReference = FirebaseDatabase.getInstance().reference.child("UserOne");
-        var hashMap : HashMap<String,String> = HashMap()
-        hashMap.put("Imglink",url)
+        var databasereference: DatabaseReference =
+            FirebaseDatabase.getInstance().reference.child("UserOne");
+        var hashMap: HashMap<String, String> = HashMap()
+        hashMap.put("Imglink", url)
 
         databasereference.push().setValue(hashMap)
         progressDialog.dismiss()
@@ -113,27 +119,28 @@ class PlasticRecycleCheck : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if(requestCode == PICK_IMAGE){
-            if(resultCode == RESULT_OK){
+        if (requestCode == PICK_IMAGE) {
+            if (resultCode == RESULT_OK) {
 
-                if(data!!.clipData != null){
+                if (data!!.clipData != null) {
 
-                    var countClipData : Int = data.clipData.itemCount
+                    var countClipData: Int = data.clipData.itemCount
 
-                    var currentImageSelect : Int = 0;
-                    while(currentImageSelect < countClipData){
+                    var currentImageSelect: Int = 0;
+                    while (currentImageSelect < countClipData) {
                         ImageUri = data.clipData.getItemAt(currentImageSelect).uri
                         ImageList.add(ImageUri)
                         currentImageSelect += 1
 
                     }
                     alertView.visibility = View.VISIBLE
-                    alertView.setText("You Have Selected " +ImageList.size +"Images")
+                    alertView.setText("You Have Selected " + ImageList.size + "Images")
                     btnChoose.visibility = View.GONE
 
-                }else{
+                } else {
 
-                    Toast.makeText(activity,"Please Select Multiple Image", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Please Select Multiple Image", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }

@@ -20,7 +20,9 @@
         android:id="@+id/camera_view"
         android:layout_above="@+id/btn_detect"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.wonderkiln.camerakit.CameraView>
+        android:layout_height="match_parent">
+
+    </com.wonderkiln.camerakit.CameraView>
 
 
 </RelativeLayout>
