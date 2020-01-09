@@ -1,4 +1,4 @@
-package com.example.recycleplasticchecker
+package com.example.recycleplasticchecker.LJ
 
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessaging

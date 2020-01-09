@@ -35,21 +35,16 @@ class Home : Fragment() {
     //Check user logged in
     override fun onStart() {
         super.onStart()
-        println("onStart Home")
         val user = mAuth.currentUser
         if (user != null) {
             if (!mAuth.currentUser!!.email.equals("")){
-                println("email"+mAuth.currentUser?.email)
-                println("user ada")
+                navigationView = activity!!.findViewById(R.id.navView)
                 functionForLoggedIn()
             }
             else{
-                println(mAuth.currentUser?.email)
-                println("user ada but anonymous")
                 functionForAnonymous()
             }
         } else {
-            println("user x ada")
             functionForAnonymous()
             signInAnonymously()
         }
@@ -57,19 +52,16 @@ class Home : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        println("onPause Home")
         val user = mAuth.currentUser
         if (user != null) {
             if (!mAuth.currentUser!!.email.equals("")){
-                println("user ada")
                 functionForLoggedIn()
             }
             else{
-                println("user ada but anonymous")
                 functionForAnonymous()
             }
         } else {
-            println("user x ada")
+
             functionForAnonymous()
             signInAnonymously()
         }
@@ -77,12 +69,9 @@ class Home : Fragment() {
 
     override fun onCreateView(
 
-
-
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
-        println("onCreateView Home")
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater,
             R.layout.fragment_home,container,false)
         mAuth = FirebaseAuth.getInstance()
@@ -142,12 +131,11 @@ class Home : Fragment() {
 
         //get navigation drawer and the menu
         navigationView = activity!!.findViewById(R.id.navView)
-        var navHeader = activity!!.findViewById<View>(R.id.navHeader)
+        //var navHeader = activity!!.findViewById<View>(R.id.navHeader)
         navMenu = navigationView.menu
 
         //disable logout and profile button
         navMenu.findItem(R.id.logout).isVisible = false
-        //profileBtn.isEnabled = false
         activity!!.findViewById<Button>(R.id.btProfile).isEnabled = false
         activity!!.findViewById<Button>(R.id.btRedeem).isEnabled = false
 
@@ -165,10 +153,10 @@ class Home : Fragment() {
         navMenu = navigationView.menu
 
 
-        //enable logout and profile button
+        //enable logout and profile button, redeem button
         navMenu.findItem(R.id.logout).isVisible = true
-        //profileBtn.isEnabled = false
-        //this.findViewById<Button>(R.id.btProfile).isEnabled = true
+        activity!!.findViewById<Button>(R.id.btProfile).isEnabled = true
+        activity!!.findViewById<Button>(R.id.btRedeem).isEnabled = true
 
         //disable login button and register button
         navMenu.findItem(R.id.login).isVisible = false

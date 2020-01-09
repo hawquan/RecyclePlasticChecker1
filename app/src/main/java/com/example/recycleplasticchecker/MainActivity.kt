@@ -31,8 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var myDialog: Dialog
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var mAuth : FirebaseAuth
-    lateinit var navMenu: Menu
-    lateinit var navigationView: NavigationView
+
 
 
 
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         mAuth = FirebaseAuth.getInstance()
 
-        Log.d("Token", "" +FirebaseInstanceId.getInstance().getToken());
+        //Log.d("Token", "" +FirebaseInstanceId.getInstance().getToken());
 
         println("onCreate MainAct")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
