@@ -53,10 +53,14 @@
         tools:layout="@layout/fragment_quiz" >
         <action
             android:id="@+id/action_quiz_to_quizLose"
-            app:destination="@id/quizLose" />
+            app:destination="@id/quizLose"
+            app:popUpTo="@+id/quiz"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_quiz_to_quizWon"
-            app:destination="@id/quizWon" />
+            app:destination="@id/quizWon"
+            app:popUpTo="@+id/quiz"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/redeem"
@@ -82,7 +86,9 @@
             app:destination="@id/register" />
         <action
             android:id="@+id/action_login_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:popUpTo="@+id/login"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_login_to_forgetPassword"
             app:destination="@id/forgetPassword" />
@@ -110,11 +116,13 @@
     <fragment
         android:id="@+id/quizLose"
         android:name="com.example.recycleplasticchecker.quiz_won_lose.QuizLose"
-        android:label="fragment_quiz_lose"
-        tools:layout="@layout/fragment_quiz_lose" >
+        android:label="You Lose !"
+        tools:layout="@layout/fragment_quiz_lose">
         <action
             android:id="@+id/action_quizLose_to_quiz"
-            app:destination="@id/quiz" />
+            app:destination="@id/quiz"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_quizLose_to_home"
             app:destination="@id/home" />
@@ -122,16 +130,18 @@
     <fragment
         android:id="@+id/quizWon"
         android:name="com.example.recycleplasticchecker.quiz_won_lose.QuizWon"
-        android:label="fragment_quiz_won"
-        tools:layout="@layout/fragment_quiz_won" >
+        android:label="You Won"
+        tools:layout="@layout/fragment_quiz_won">
         <action
             android:id="@+id/action_quizWon_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:popUpTo="@+id/home"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/quizStart"
         android:name="com.example.recycleplasticchecker.quiz_won_lose.QuizStart"
-        android:label="fragment_quiz_start">
+        android:label="Quiz Menu">
         <action
             android:id="@+id/action_quizStart_to_quiz"
             app:destination="@id/quiz" />
@@ -153,8 +163,8 @@
     <fragment
         android:id="@+id/forgetPassword"
         android:name="com.example.recycleplasticchecker.ForgetPassword"
-        android:label="fragment_forget_password"
-        tools:layout="@layout/fragment_forget_password" >
+        android:label="Forget Password"
+        tools:layout="@layout/fragment_forget_password">
         <action
             android:id="@+id/action_forgetPassword_to_login"
             app:destination="@id/login" />
