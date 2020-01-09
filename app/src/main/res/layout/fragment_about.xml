@@ -27,7 +27,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/aboutImage"
+            android:id="@+id/rulesImage"
             android:layout_width="0dp"
             android:layout_height="@dimen/image_header_height"
             android:layout_marginStart="@dimen/horizontal_margin"
@@ -49,7 +49,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aboutImage" />
+            app:layout_constraintTop_toBottomOf="@+id/rulesImage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
