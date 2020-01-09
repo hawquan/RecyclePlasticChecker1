@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserInfo
 import com.google.firebase.database.*
 
 /**
@@ -18,8 +19,10 @@ import com.google.firebase.database.*
  */
 class Profile : Fragment() {
 
+    class User(val name: String, val email: String, val username: String, val password: String, val point: Int)
+
     lateinit var databaseReference : DatabaseReference
-    lateinit var  user : FirebaseUser
+    lateinit var user : FirebaseUser
     lateinit var uid : String
     lateinit var editName: EditText
     lateinit var editEmail: EditText
@@ -28,6 +31,8 @@ class Profile : Fragment() {
     lateinit var editPoint: EditText
     lateinit var edit: Button
     lateinit var save: Button
+    lateinit var editOldPassword: EditText
+    lateinit var save1: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +53,8 @@ class Profile : Fragment() {
         editPoint = activity!!.findViewById(R.id.editPoint)
         edit = activity!!.findViewById(R.id.edit)
         save = activity!!.findViewById(R.id.save)
+        editOldPassword = activity!!.findViewById(R.id.editOldPassword)
+        save1 = activity!!.findViewById(R.id.save1)
 
         editName.isEnabled = false
         editEmail.isEnabled = false
@@ -55,6 +62,8 @@ class Profile : Fragment() {
         editPassword.isEnabled = false
         editPoint.isEnabled = false
         save.isGone = true
+        editOldPassword.isGone = true
+        save1.isGone = true
 
         databaseReference = FirebaseDatabase.getInstance().reference
 
@@ -92,9 +101,87 @@ class Profile : Fragment() {
         save.setOnClickListener(){
             save()
         }
+
+        save1.setOnClickListener(){
+            save1()
+        }
     }
 
     private fun save(){
+        user = FirebaseAuth.getInstance().currentUser!!
+        uid = user.uid
+        val name = editName.text.toString().trim()
+        val email = editEmail.text.toString().trim()
+        val username = editUsername.text.toString().trim()
+        val password = editPassword.text.toString().trim()
+        val point = editPoint.text.toString().trim()
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_password = dataSnapshot.child("password").value.toString()
+
+                if (!user_password.equals(password)) {
+                    editOldPassword.isGone = false
+                    save.isGone = true
+                    save1.isGone = false
+                    Toast.makeText(activity, "Enter the old password to change the new password", Toast.LENGTH_LONG).show()
+                } else {
+                    val user = User(name, email, username, password, point.toInt())
+                    databaseReference.setValue(user)
+                    Toast.makeText(activity, "Update Successfully", Toast.LENGTH_SHORT).show()
+                    editName.isEnabled = false
+                    editEmail.isEnabled = false
+                    editUsername.isEnabled = false
+                    editPassword.isEnabled = false
+                    save.isGone = true
+                    edit.isGone = false
+                }
+            }
+        })
+    }
+
+    private fun save1(){
+        user = FirebaseAuth.getInstance().currentUser!!
+        uid = user.uid
+        val name = editName.text.toString().trim()
+        val email = editEmail.text.toString().trim()
+        val username = editUsername.text.toString().trim()
+        val password = editPassword.text.toString().trim()
+        val point = editPoint.text.toString().trim()
+        val oldPassword = editOldPassword.text.toString().trim()
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user_password = dataSnapshot.child("password").value.toString()
+
+                if (user_password.equals(oldPassword)) {
+                    val user = User(name, email, username, password, point.toInt())
+                    databaseReference.setValue(user)
+                    Toast.makeText(activity, "Update Successfully", Toast.LENGTH_SHORT).show()
+                    editName.isEnabled = false
+                    editEmail.isEnabled = false
+                    editUsername.isEnabled = false
+                    editPassword.isEnabled = false
+                    editOldPassword.isGone = true
+                    save.isGone = true
+                    save1.isGone = true
+                    edit.isGone = false
+                } else {
+                    Toast.makeText(activity, "Old Password is wrong, Please enter again", Toast.LENGTH_LONG).show()
+                }
+            }
+        })
     }
 }
