@@ -6,10 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.view.isGone
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserInfo
@@ -20,33 +18,43 @@ import com.google.firebase.database.*
  */
 class Profile : Fragment() {
 
-
-
-    lateinit var li : ListView
-    lateinit var adapter : ArrayAdapter<String>
     lateinit var databaseReference : DatabaseReference
     lateinit var  user : FirebaseUser
-    lateinit var  info : UserInfo
-    lateinit var itemlist : MutableList<String>
     lateinit var uid : String
+    lateinit var editName: EditText
+    lateinit var editEmail: EditText
+    lateinit var editUsername: EditText
+    lateinit var editPassword: EditText
+    lateinit var editPoint: EditText
+    lateinit var edit: Button
+    lateinit var save: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        li = activity!!.findViewById(R.id.listView)
         user = FirebaseAuth.getInstance().currentUser!!
         uid = user.uid
-        itemlist = ArrayList()
+        editName = activity!!.findViewById(R.id.editName)
+        editEmail = activity!!.findViewById(R.id.editEmail)
+        editUsername = activity!!.findViewById(R.id.editUsername)
+        editPassword = activity!!.findViewById(R.id.editPassword)
+        editPoint = activity!!.findViewById(R.id.editPoint)
+        edit = activity!!.findViewById(R.id.edit)
+        save = activity!!.findViewById(R.id.save)
 
+        editName.isEnabled = false
+        editEmail.isEnabled = false
+        editUsername.isEnabled = false
+        editPassword.isEnabled = false
+        editPoint.isEnabled = false
+        save.isGone = true
 
         databaseReference = FirebaseDatabase.getInstance().reference
 
@@ -56,26 +64,37 @@ class Profile : Fragment() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                itemlist.clear()
 
                 var user_name : String = dataSnapshot.child("name").value.toString()
                 var user_email : String = dataSnapshot.child("email").value.toString()
-                var user_point: String = dataSnapshot.child("point").value.toString()
                 var user_username : String = dataSnapshot.child("username").value.toString()
+                var user_password : String = dataSnapshot.child("password").value.toString()
+                var user_point: String = dataSnapshot.child("point").value.toString()
 
+                editName.setText(user_name)
+                editEmail.setText(user_email)
+                editUsername.setText(user_username)
+                editPassword.setText(user_password)
+                editPoint.setText(user_point)
 
-                itemlist.add("Name          : $user_name")
-                itemlist.add("Email         : $user_email")
-                itemlist.add("username      : $user_username")
-                itemlist.add("Point Earned  : $user_point")
-
-                adapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1, itemlist)
-                li.adapter = adapter
             }
-
-
         })
+
+        edit.setOnClickListener(){
+            editName.isEnabled = true
+            editEmail.isEnabled = true
+            editUsername.isEnabled = true
+            editPassword.isEnabled = true
+            save.isGone = false
+            edit.isGone = true
+        }
+
+        save.setOnClickListener(){
+            save()
+        }
     }
 
+    private fun save(){
 
+    }
 }
