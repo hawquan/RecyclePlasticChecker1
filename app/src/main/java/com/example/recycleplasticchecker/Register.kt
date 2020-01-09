@@ -47,6 +47,8 @@ class Register : Fragment() {
         btnRegister.setOnClickListener{
             register()
         }
+
+
     }
 
     override fun onCreateView(
