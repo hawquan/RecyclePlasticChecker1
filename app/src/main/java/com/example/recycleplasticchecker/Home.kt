@@ -68,7 +68,7 @@ class Home : Fragment() {
         }
 
         binding.btQuiz.setOnClickListener { view : View ->
-            view.findNavController().navigate(R.id.action_home_to_quiz)
+            view.findNavController().navigate(R.id.action_home_to_quizStart)
         }
 
         binding.btRedeem.setOnClickListener { view : View ->
@@ -117,6 +117,7 @@ class Home : Fragment() {
         //enable login button and register button
         navMenu.findItem(R.id.login).isVisible = true
         navMenu.findItem(R.id.register).isVisible = true
+
 
 
     }

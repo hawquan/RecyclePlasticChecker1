@@ -36,7 +36,7 @@ class Quiz : Fragment() {
         ),
         Question(
             text = "Who should you call for more information on recycling?",
-            answers = listOf("Ministry of Health Malaysia", "Fire Department", "JPJ","Police Department")
+            answers = listOf("Malaysian Nature Society", "Fire Department", "JPJ","Police Department")
         ),
         Question(
             text = "What does the three R's of recycling mean?",

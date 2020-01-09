@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/grad_bg"
     tools:context=".Register">
 
     <ImageView
@@ -33,7 +34,7 @@
         app:layout_constraintVertical_bias="0.03" />
 
     <EditText
-        android:id="@+id/editName"
+        android:id="@+id/txtName"
         android:layout_width="200dp"
         android:layout_height="45dp"
         android:layout_marginTop="10dp"
@@ -59,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editName"
+        app:layout_constraintTop_toBottomOf="@+id/txtName"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -120,19 +121,6 @@
         app:layout_constraintTop_toBottomOf="@+id/editConfirmPassword"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/linkLoginPage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Already have account, Login now !"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ProgressBar
         android:id="@+id/progressBar"
