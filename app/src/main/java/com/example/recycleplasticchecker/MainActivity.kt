@@ -15,8 +15,11 @@ import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.iid.FirebaseInstanceId
+import kotlinx.android.synthetic.main.popup1.*
 
 
 private const val TAG : String = "MainActivity"
@@ -28,8 +31,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var myDialog: Dialog
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var mAuth : FirebaseAuth
-    lateinit var navMenu: Menu
-    lateinit var navigationView: NavigationView
+
 
 
 
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         mAuth = FirebaseAuth.getInstance()
 
-        Log.d("Token", "" +FirebaseInstanceId.getInstance().getToken());
+        //Log.d("Token", "" +FirebaseInstanceId.getInstance().getToken());
 
         println("onCreate MainAct")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
@@ -52,18 +54,27 @@ class MainActivity : AppCompatActivity() {
 
     lateinit  var tv_close:TextView
     lateinit  var btnRedeem:Button
-
+    lateinit var  redeemLazada:TextView
+    lateinit var redeemShopee:TextView
+    lateinit var  redeemZalora:TextView
+    lateinit var  redeemEbay:TextView
     fun ShowPopup1(v:View){
 
         myDialog.setContentView(R.layout.popup1)
         tv_close = myDialog.findViewById(R.id.tv_cancel)
         btnRedeem = myDialog.findViewById(R.id.btnRedeem)
-
+        redeemLazada=myDialog.findViewById(R.id.lazadaCode)
+        redeemLazada.isGone=true
+        //redeemLazada.visibility=gone
         tv_close.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 myDialog.dismiss()
+
             }
         })
+        btnRedeem.setOnClickListener {
+            redeemLazada.isGone=false
+        }
         myDialog.show()
     }
 
@@ -72,13 +83,18 @@ class MainActivity : AppCompatActivity() {
         myDialog.setContentView(R.layout.popup2)
         tv_close = myDialog.findViewById(R.id.tv_cancel)
         btnRedeem = myDialog.findViewById(R.id.btnRedeem)
-
+        redeemShopee = myDialog.findViewById(R.id.ShopeeCode)
+        redeemShopee.isGone=true
         tv_close.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 myDialog.dismiss()
             }
         })
+        btnRedeem.setOnClickListener {
+            redeemShopee.isGone=false
+        }
         myDialog.show()
+
     }
 
     fun ShowPopup3(v:View){
@@ -86,12 +102,16 @@ class MainActivity : AppCompatActivity() {
         myDialog.setContentView(R.layout.popup3)
         tv_close = myDialog.findViewById(R.id.tv_cancel)
         btnRedeem = myDialog.findViewById(R.id.btnRedeem)
-
+        redeemZalora=myDialog.findViewById(R.id.ZaloraCode)
+        redeemZalora.isGone=true
         tv_close.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 myDialog.dismiss()
             }
         })
+        btnRedeem.setOnClickListener {
+            redeemZalora.isGone=false
+        }
         myDialog.show()
     }
 
@@ -100,13 +120,16 @@ class MainActivity : AppCompatActivity() {
         myDialog.setContentView(R.layout.popup4)
         tv_close = myDialog.findViewById(R.id.tv_cancel)
         btnRedeem = myDialog.findViewById(R.id.btnRedeem)
-
+        redeemEbay= myDialog.findViewById(R.id.EbayCode)
+        redeemEbay.isGone=true
         tv_close.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View?) {
                 myDialog.dismiss()
             }
         })
-
+        btnRedeem.setOnClickListener {
+            redeemEbay.isGone=false
+        }
         myDialog.show()
     }
 
