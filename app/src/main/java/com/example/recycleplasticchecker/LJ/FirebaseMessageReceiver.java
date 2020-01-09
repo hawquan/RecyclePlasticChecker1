@@ -1,4 +1,4 @@
-package com.example.recycleplasticchecker;
+package com.example.recycleplasticchecker.LJ;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -14,6 +14,8 @@ import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.recycleplasticchecker.MainActivity;
+import com.example.recycleplasticchecker.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -42,7 +44,7 @@ public class FirebaseMessageReceiver  extends FirebaseMessagingService {
     }
 
     public void showNotification(String title, String message){
-          Intent intent= new Intent(this,MainActivity.class);
+          Intent intent= new Intent(this, MainActivity.class);
           String channel_id = "web_app_channel";
           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent =  PendingIntent.getActivity(this, 0,intent,PendingIntent.FLAG_ONE_SHOT);
