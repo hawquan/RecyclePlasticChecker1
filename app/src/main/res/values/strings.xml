@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="btCodeCheck">CodeCheck</string>
+    <string name="btCodeCheck">Code Check</string>
     <string name="fragAbout">About</string>
     <string name="fragRules">Rules</string>
     <string name="btRedeem">Redeem</string>
@@ -22,7 +22,7 @@
     <string name="BackHome">Back To Menu</string>
     <string name="TryAgain">Try Again</string>
     <string name="GoHome">Back To Home</string>
-    <string name="btPlastic_Recycle_Check">Plastic Recycle Check</string>
+    <string name="btPlastic_Recycle_Check">Recycle Check</string>
     <string name="registeration_success">Register Successfully</string>
     <string name="Logout">Logout</string>
     <string name="lazada">Lazada 15% OFF Voucher Code</string>

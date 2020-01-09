@@ -76,6 +76,9 @@ class  Login : Fragment() {
         btnProfile = activity!!.findViewById(R.id.btProfile)
         btnRedeem = activity!!.findViewById(R.id.btRedeem)
 
+        navigationView = activity!!.findViewById(R.id.navView)
+        navMenu = navigationView.menu
+
         btnLogin.setOnClickListener() {
             login()
         }
@@ -122,12 +125,14 @@ class  Login : Fragment() {
                         val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
-                            //mAuth.signInWithEmailAndPassword(email1, password1)
+                            mAuth.signInWithEmailAndPassword(email1, password1)
+//                            LoginWithAuth(email1,password)
                             functionForLoggedIn()
                             navigationView.findViewById<TextView>(R.id.usernameView).text = username
                             navigationView.findViewById<TextView>(R.id.emailView).text = email1
                             Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
                             view!!.findNavController().navigate(R.id.action_login_to_home)
+
                         } else {
                             Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
                         }
