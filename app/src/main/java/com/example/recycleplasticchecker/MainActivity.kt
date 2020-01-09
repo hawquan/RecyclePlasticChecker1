@@ -9,30 +9,30 @@ import androidx.navigation.ui.NavigationUI
 import com.example.recycleplasticchecker.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import android.util.Log
+import android.view.Menu
+import com.google.android.material.navigation.NavigationView
+
+
+
 private const val TAG : String = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
+    class User(val name: String = "", val email: String = "", val username: String = "", val password: String = "", val point: Int)
+
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var mAuth : FirebaseAuth
+    lateinit var navMenu: Menu
+    lateinit var navigationView: NavigationView
 
 
-    override fun onStart() {
-        super.onStart()
 
-        val user = mAuth.getCurrentUser()
-        if (user != null) {
-            // do your stuff
-        } else {
-            signInAnonymously()
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance()
 
+        println("onCreate MainAct")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         drawerLayout = binding.drawerLayout
         val navController = this.findNavController(R.id.myNavHostFragment)
@@ -46,12 +46,4 @@ class MainActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
 
-    private fun signInAnonymously() {
-        mAuth.signInAnonymously().addOnSuccessListener(this) {
-            // do your stuff
-        }
-            .addOnFailureListener(
-                this
-            ) { exception -> Log.e(TAG, "signInAnonymously:FAILURE", exception) }
-    }
 }

@@ -1,15 +1,20 @@
 package com.example.recycleplasticchecker
 
 
+import android.content.ClipData
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -27,19 +32,42 @@ class  Login : Fragment() {
 
     class Account(val name: String = "", val email: String = "", val username: String = "", val password: String = "")
 
+    lateinit var rellay1:RelativeLayout
+    lateinit var rellay2:RelativeLayout
     lateinit var editUsername: EditText
     lateinit var editPassword: EditText
     lateinit var btnLogin: Button
     lateinit var linkRegisterPage: TextView
     lateinit var mAuth : FirebaseAuth
+    lateinit var navMenu : Menu
+    lateinit var navigationView : NavigationView
+
+
+    var handler : Handler = Handler()
+    var runnable : Runnable = object  : Runnable{
+        override  fun run(){
+            rellay1.visibility = View.VISIBLE
+            rellay2.visibility = View.VISIBLE
+        }
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        rellay1 = activity!!.findViewById(R.id.rellay1)
+        rellay2 = activity!!.findViewById(R.id.rellay2)
+
+        handler.postDelayed(runnable, 1250)
 
         editUsername = activity!!.findViewById(R.id.editUsername)
         editPassword= activity!!.findViewById(R.id.editPassword)
         btnLogin = activity!!.findViewById(R.id.btnLogin)
         linkRegisterPage = activity!!.findViewById(R.id.linkRegisterPage)
+
+        //to hide item in navigation once logged in
+        navigationView = activity!!.findViewById(R.id.navView)
+        navMenu = navigationView.menu
 
         btnLogin.setOnClickListener() {
             login()
@@ -72,7 +100,7 @@ class  Login : Fragment() {
 
         if(!isEmailValid(username)) {
             //Login with username and password
-            val database = FirebaseDatabase.getInstance().getReference()
+            val database = FirebaseDatabase.getInstance().reference
 
             database.child("Users").addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -80,8 +108,12 @@ class  Login : Fragment() {
                         val account = h.getValue(Account::class.java)
                         val username1 = account!!.username
                         val password1 = account.password
+                        val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
+                            mAuth.signInWithEmailAndPassword(email1, password)
+                            navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
+                            navigationView.findViewById<TextView>(R.id.emailView).text = "Email"
                             Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
                             view!!.findNavController().navigate(R.id.action_login_to_home)
                         } else {
@@ -102,16 +134,21 @@ class  Login : Fragment() {
             mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(object: OnCompleteListener<AuthResult>{
                 override fun onComplete(task: Task<AuthResult>) {
                     if(task.isSuccessful){
+                        navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
+                        navigationView.findViewById<TextView>(R.id.emailView).text = "Email"
                         Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
                         view!!.findNavController().navigate(R.id.action_login_to_home)
 
                     }else{
-                        Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
         }
+
     }
+
+
 
     private fun isEmailValid(email: String): Boolean {
         val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
