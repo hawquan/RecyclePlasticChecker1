@@ -38,8 +38,8 @@ class ForgetPassword : Fragment() {
         sendEmail = activity!!.findViewById(R.id.sendEmail)
         login = activity!!.findViewById(R.id.login)
 
-        //editPassword.isEnabled = false
-        //resetPassword.isEnabled = false
+        editPassword.isEnabled = false
+        login.isEnabled = false
 
         sendEmail.setOnClickListener() {
             sendEmail()
@@ -72,10 +72,10 @@ class ForgetPassword : Fragment() {
                 override fun onComplete(task: Task<Void>) {
                     if (task.isSuccessful) {
                         Toast.makeText(activity, "Go to your inbox to complete reset password", Toast.LENGTH_LONG).show()
-                        //editEmail.isEnabled = false
-                        //sendEmail.isEnabled = false
-                        //editPassword.isEnabled = true
-                        //resetPassword.isEnabled = true
+                        editEmail.isEnabled = false
+                        sendEmail.isEnabled = false
+                        editPassword.isEnabled = true
+                        login.isEnabled = true
                     } else {
                         Toast.makeText(activity, "Your email address is invalid", Toast.LENGTH_LONG).show()
                     }
@@ -86,8 +86,6 @@ class ForgetPassword : Fragment() {
     private fun resetPassword() {
         val email = editEmail.text.toString().trim()
         val password = editPassword.text.toString().trim()
-
-        //editEmail.isEnabled = true
 
         if (password.isEmpty()) {
             editPassword.error = "Please enter new password"
