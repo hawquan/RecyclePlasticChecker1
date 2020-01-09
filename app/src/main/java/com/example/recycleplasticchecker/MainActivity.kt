@@ -3,6 +3,7 @@ package com.example.recycleplasticchecker
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -15,7 +16,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.google.android.material.navigation.NavigationView
-
+import com.google.firebase.iid.FirebaseInstanceId
 
 
 private const val TAG : String = "MainActivity"
@@ -34,8 +35,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this)
         mAuth = FirebaseAuth.getInstance()
+
+        Log.d("Token", "" +FirebaseInstanceId.getInstance().getToken());
 
         println("onCreate MainAct")
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)

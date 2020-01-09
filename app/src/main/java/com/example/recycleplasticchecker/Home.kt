@@ -25,25 +25,26 @@ private const val TAG : String = "Home"
  */
 class Home : Fragment() {
 
-    private lateinit var drawerLayout: DrawerLayout
+
     private lateinit var mAuth : FirebaseAuth
     lateinit var navMenu: Menu
     lateinit var navigationView: NavigationView
-    private var isSignInAnonymously : Boolean = false
+
 
 
     //Check user logged in
     override fun onStart() {
         super.onStart()
-        println("Sign In A :" +isSignInAnonymously)
         println("onStart Home")
         val user = mAuth.currentUser
         if (user != null) {
-            if (!isSignInAnonymously){
+            if (!mAuth.currentUser!!.email.equals("")){
+                println("email"+mAuth.currentUser?.email)
                 println("user ada")
                 functionForLoggedIn()
             }
             else{
+                println(mAuth.currentUser?.email)
                 println("user ada but anonymous")
                 functionForAnonymous()
             }
@@ -59,12 +60,13 @@ class Home : Fragment() {
         println("onPause Home")
         val user = mAuth.currentUser
         if (user != null) {
-            if (!isSignInAnonymously){
+            if (!mAuth.currentUser!!.email.equals("")){
                 println("user ada")
                 functionForLoggedIn()
             }
             else{
                 println("user ada but anonymous")
+                functionForAnonymous()
             }
         } else {
             println("user x ada")
@@ -76,6 +78,7 @@ class Home : Fragment() {
     override fun onCreateView(
 
 
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
@@ -83,6 +86,8 @@ class Home : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater,
             R.layout.fragment_home,container,false)
         mAuth = FirebaseAuth.getInstance()
+
+
         binding.btCodeCheck.setOnClickListener { view : View ->
             view.findNavController().navigate(R.id.action_home_to_codeCheck)
         }
@@ -124,8 +129,9 @@ class Home : Fragment() {
     private fun signInAnonymously() {
         mAuth.signInAnonymously().addOnSuccessListener() {
 
-            isSignInAnonymously = true
             //display message at nav header
+            navigationView.findViewById<TextView>(R.id.usernameView).text = "Anonymous"
+            navigationView.findViewById<TextView>(R.id.emailView).text = mAuth.currentUser?.uid
             Toast.makeText(activity,"loggged in Anonymous", Toast.LENGTH_SHORT)
         }
             .addOnFailureListener { exception -> Log.e(TAG, "signInAnonymously:FAILURE", exception) }
@@ -143,6 +149,7 @@ class Home : Fragment() {
         navMenu.findItem(R.id.logout).isVisible = false
         //profileBtn.isEnabled = false
         activity!!.findViewById<Button>(R.id.btProfile).isEnabled = false
+        activity!!.findViewById<Button>(R.id.btRedeem).isEnabled = false
 
         //enable login button and register button
         navMenu.findItem(R.id.login).isVisible = true
