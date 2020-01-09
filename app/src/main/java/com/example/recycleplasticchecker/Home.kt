@@ -36,16 +36,9 @@ class Home : Fragment() {
         super.onStart()
         val user = mAuth.currentUser
         if (user != null) {
-            if (!mAuth.currentUser!!.email.equals("")){
-                navigationView = activity!!.findViewById(R.id.navView)
-                functionForLoggedIn()
-            }
-            else{
-                functionForAnonymous()
-            }
+            functionForLoggedIn()
         } else {
             functionForAnonymous()
-            signInAnonymously()
         }
     }
 
@@ -53,16 +46,9 @@ class Home : Fragment() {
         super.onPause()
         val user = mAuth.currentUser
         if (user != null) {
-            if (!mAuth.currentUser!!.email.equals("")){
-                functionForLoggedIn()
-            }
-            else{
-                functionForAnonymous()
-            }
+            functionForLoggedIn()
         } else {
-
             functionForAnonymous()
-            signInAnonymously()
         }
     }
 
@@ -112,17 +98,6 @@ class Home : Fragment() {
         return NavigationUI.onNavDestinationSelected(item!!,
             view!!.findNavController())
                 || super.onOptionsItemSelected(item)
-    }
-
-    private fun signInAnonymously() {
-        mAuth.signInAnonymously().addOnSuccessListener() {
-
-            //display message at nav header
-            navigationView.findViewById<TextView>(R.id.usernameView).text = "Anonymous"
-            navigationView.findViewById<TextView>(R.id.emailView).text = mAuth.currentUser?.uid
-            Toast.makeText(activity,"loggged in Anonymous", Toast.LENGTH_SHORT)
-        }
-            .addOnFailureListener { exception -> Log.e(TAG, "signInAnonymously:FAILURE", exception) }
     }
 
 

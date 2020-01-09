@@ -45,7 +45,11 @@
         android:id="@+id/codeCheck"
         android:name="com.example.recycleplasticchecker.CodeCheck"
         android:label="Code Check"
-        tools:layout="@layout/fragment_code_check" />
+        tools:layout="@layout/fragment_code_check" >
+        <action
+            android:id="@+id/action_codeCheck_to_codeCheck_2"
+            app:destination="@id/codeCheck_2" />
+    </fragment>
     <fragment
         android:id="@+id/quiz"
         android:name="com.example.recycleplasticchecker.Quiz"
@@ -169,4 +173,66 @@
             android:id="@+id/action_forgetPassword_to_login"
             app:destination="@id/login" />
     </fragment>
+    <fragment
+        android:id="@+id/codeCheck_2"
+        android:name="com.example.recycleplasticchecker.CodeCheck_2"
+        android:label="fragment_code_check_2"
+        tools:layout="@layout/fragment_code_check_2" >
+        <action
+            android:id="@+id/action_codeCheck_2_to_HDPE_2"
+            app:destination="@id/HDPE_2" />
+        <action
+            android:id="@+id/action_codeCheck_2_to_LDPE_4"
+            app:destination="@id/LDPE_4" />
+        <action
+            android:id="@+id/action_codeCheck_2_to_OTHER_7"
+            app:destination="@id/OTHER_7" />
+        <action
+            android:id="@+id/action_codeCheck_2_to_PETE_1"
+            app:destination="@id/PETE_1" />
+        <action
+            android:id="@+id/action_codeCheck_2_to_PP_5"
+            app:destination="@id/PP_5" />
+        <action
+            android:id="@+id/action_codeCheck_2_to_PS_6"
+            app:destination="@id/PS_6" />
+        <action
+            android:id="@+id/action_codeCheck_2_to_v_3"
+            app:destination="@id/v_3" />
+    </fragment>
+    <fragment
+        android:id="@+id/HDPE_2"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.HDPE_2"
+        android:label="fragment_hdpe_2"
+        tools:layout="@layout/fragment_hdpe_2" />
+    <fragment
+        android:id="@+id/LDPE_4"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.LDPE_4"
+        android:label="fragment_ldpe_4"
+        tools:layout="@layout/fragment_ldpe_4" />
+    <fragment
+        android:id="@+id/OTHER_7"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.OTHER_7"
+        android:label="fragment_other_7"
+        tools:layout="@layout/fragment_other_7" />
+    <fragment
+        android:id="@+id/PETE_1"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.PETE_1"
+        android:label="fragment_pete_1"
+        tools:layout="@layout/fragment_pete_1" />
+    <fragment
+        android:id="@+id/PP_5"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.PP_5"
+        android:label="fragment_pp_5"
+        tools:layout="@layout/fragment_pp_5" />
+    <fragment
+        android:id="@+id/PS_6"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.PS_6"
+        android:label="fragment_ps_6"
+        tools:layout="@layout/fragment_ps_6" />
+    <fragment
+        android:id="@+id/v_3"
+        android:name="com.example.recycleplasticchecker.RecycleSysmbolDetails.V_3"
+        android:label="fragment_v_3"
+        tools:layout="@layout/fragment_v_3" />
 </navigation>
