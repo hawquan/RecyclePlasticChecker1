@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserInfo
 import com.google.firebase.database.*
 
 /**
@@ -18,13 +19,14 @@ import com.google.firebase.database.*
  */
 class Profile : Fragment() {
 
+    class User(val name: String, val email: String, val username: String, val point: Int)
+
     lateinit var databaseReference : DatabaseReference
-    lateinit var  user : FirebaseUser
+    lateinit var user : FirebaseUser
     lateinit var uid : String
     lateinit var editName: EditText
     lateinit var editEmail: EditText
     lateinit var editUsername: EditText
-    lateinit var editPassword: EditText
     lateinit var editPoint: EditText
     lateinit var edit: Button
     lateinit var save: Button
@@ -44,7 +46,6 @@ class Profile : Fragment() {
         editName = activity!!.findViewById(R.id.editName)
         editEmail = activity!!.findViewById(R.id.editEmail)
         editUsername = activity!!.findViewById(R.id.editUsername)
-        editPassword = activity!!.findViewById(R.id.editPassword)
         editPoint = activity!!.findViewById(R.id.editPoint)
         edit = activity!!.findViewById(R.id.edit)
         save = activity!!.findViewById(R.id.save)
@@ -52,7 +53,6 @@ class Profile : Fragment() {
         editName.isEnabled = false
         editEmail.isEnabled = false
         editUsername.isEnabled = false
-        editPassword.isEnabled = false
         editPoint.isEnabled = false
         save.isGone = true
 
@@ -68,13 +68,11 @@ class Profile : Fragment() {
                 var user_name : String = dataSnapshot.child("name").value.toString()
                 var user_email : String = dataSnapshot.child("email").value.toString()
                 var user_username : String = dataSnapshot.child("username").value.toString()
-                var user_password : String = dataSnapshot.child("password").value.toString()
                 var user_point: String = dataSnapshot.child("point").value.toString()
 
                 editName.setText(user_name)
                 editEmail.setText(user_email)
                 editUsername.setText(user_username)
-                editPassword.setText(user_password)
                 editPoint.setText(user_point)
 
             }
@@ -84,7 +82,6 @@ class Profile : Fragment() {
             editName.isEnabled = true
             editEmail.isEnabled = true
             editUsername.isEnabled = true
-            editPassword.isEnabled = true
             save.isGone = false
             edit.isGone = true
         }
@@ -95,6 +92,30 @@ class Profile : Fragment() {
     }
 
     private fun save(){
+        user = FirebaseAuth.getInstance().currentUser!!
+        uid = user.uid
+        val name = editName.text.toString().trim()
+        val email = editEmail.text.toString().trim()
+        val username = editUsername.text.toString().trim()
+        val point = editPoint.text.toString().trim()
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val user = User(name, email, username, point.toInt())
+                databaseReference.setValue(user)
+                Toast.makeText(activity, "Update Successfully", Toast.LENGTH_SHORT).show()
+                editName.isEnabled = false
+                editEmail.isEnabled = false
+                editUsername.isEnabled = false
+                save.isGone = true
+                edit.isGone = false
+            }
+        })
     }
 }

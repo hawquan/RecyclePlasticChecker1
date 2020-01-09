@@ -8,6 +8,7 @@ import android.app.AlertDialog
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
+import androidx.navigation.findNavController
 import com.example.recycleplasticchecker.Helper.InternetCheck
 import com.google.android.gms.tasks.Task
 import com.google.firebase.ml.vision.FirebaseVision
@@ -54,6 +55,10 @@ class CodeCheck : Fragment() {
 
             camera_view.start()
             camera_view.captureImage()
+        }
+
+        btn_FindSymbol.setOnClickListener{
+            view.findNavController().navigate(R.id.action_codeCheck_to_codeCheck_2)
         }
 
         camera_view.addCameraKitListener(object: CameraKitEventListener{
