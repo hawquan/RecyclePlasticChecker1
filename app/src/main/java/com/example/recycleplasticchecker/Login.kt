@@ -93,10 +93,10 @@ class  Login : Fragment() {
                         val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
-
                             mAuth.signInWithEmailAndPassword(email1, password)
+                            navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
+                            navigationView.findViewById<TextView>(R.id.emailView).text = "Email"
                             Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
-                            LoginSuccessful()
                             view!!.findNavController().navigate(R.id.action_login_to_home)
                         } else {
                             Toast.makeText(
@@ -116,12 +116,13 @@ class  Login : Fragment() {
             mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(object: OnCompleteListener<AuthResult>{
                 override fun onComplete(task: Task<AuthResult>) {
                     if(task.isSuccessful){
+                        navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
+                        navigationView.findViewById<TextView>(R.id.emailView).text = "Email"
                         Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
-                        LoginSuccessful()
                         view!!.findNavController().navigate(R.id.action_login_to_home)
 
                     }else{
-                        Toast.makeText(activity, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
@@ -129,12 +130,7 @@ class  Login : Fragment() {
 
     }
 
-    //to hide item in navigation once logged in
-    private fun LoginSuccessful(){
-        navMenu.findItem(R.id.login).isVisible = false
-        navMenu.findItem(R.id.register).isVisible = false
-        navMenu.findItem(R.id.logout).isVisible = true
-    }
+
 
     private fun isEmailValid(email: String): Boolean {
         val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
