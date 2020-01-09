@@ -44,7 +44,14 @@
     </LinearLayout>
 
 
-        <Button
+    <TextView
+        android:id="@+id/ShopeeCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/CodeShoppe"
+        android:textColor="#BD1919" />
+
+    <Button
             android:id="@+id/btnRedeem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

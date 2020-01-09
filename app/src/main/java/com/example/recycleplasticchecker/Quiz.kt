@@ -62,7 +62,7 @@ class Quiz : Fragment() {
         ),
         Question(
             text = "Which of the following can be recycled?",
-            answers = listOf("NavController", "NavCentral", "NavMaster", "NavSwitcher")
+            answers = listOf("All of the above", "Newspaper", "Textbooks", "Cardboard sheet")
         ),
         Question(
             text = "Which item can be recycled?",
