@@ -29,7 +29,6 @@ class Register : Fragment() {
     lateinit var editPassword: EditText
     lateinit var editConfirmPassword: EditText
     lateinit var btnRegister: Button
-    lateinit var linkLoginPage: TextView
     lateinit var  progressBar: ProgressBar
     private lateinit var mAuth: FirebaseAuth
 
@@ -42,7 +41,6 @@ class Register : Fragment() {
         editPassword = activity!!.findViewById(R.id.editPassword)
         editConfirmPassword = activity!!.findViewById(R.id.editConfirmPassword)
         btnRegister = activity!!.findViewById(R.id.btn_register)
-        linkLoginPage = activity!!.findViewById(R.id.linkLoginPage)
         progressBar = activity!!.findViewById(R.id.progressBar)
         progressBar.visibility = View.GONE
 
@@ -51,9 +49,7 @@ class Register : Fragment() {
             register()
         }
 
-        linkLoginPage.setOnClickListener{
-            view.findNavController().navigate(R.id.action_register_to_login)
-        }
+
     }
 
     override fun onCreateView(
