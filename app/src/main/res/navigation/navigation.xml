@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_login_to_forgetPassword"
+            app:destination="@id/forgetPassword" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -146,5 +149,14 @@
         <action
             android:id="@+id/action_logout_to_home"
             app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPassword"
+        android:name="com.example.recycleplasticchecker.ForgetPassword"
+        android:label="fragment_forget_password"
+        tools:layout="@layout/fragment_forget_password" >
+        <action
+            android:id="@+id/action_forgetPassword_to_login"
+            app:destination="@id/login" />
     </fragment>
 </navigation>

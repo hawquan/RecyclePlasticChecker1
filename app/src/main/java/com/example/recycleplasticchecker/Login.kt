@@ -38,6 +38,7 @@ class  Login : Fragment() {
     lateinit var editPassword: EditText
     lateinit var btnLogin: Button
     lateinit var linkRegisterPage: TextView
+    lateinit var linkForgetPassword: TextView
     lateinit var mAuth : FirebaseAuth
     lateinit var navMenu : Menu
     lateinit var navigationView : NavigationView
@@ -64,6 +65,7 @@ class  Login : Fragment() {
         editPassword= activity!!.findViewById(R.id.editPassword)
         btnLogin = activity!!.findViewById(R.id.btnLogin)
         linkRegisterPage = activity!!.findViewById(R.id.linkRegisterPage)
+        linkForgetPassword = activity!!.findViewById(R.id.linkForgetPassword)
 
         //to hide item in navigation once logged in
         navigationView = activity!!.findViewById(R.id.navView)
@@ -75,6 +77,10 @@ class  Login : Fragment() {
 
         linkRegisterPage.setOnClickListener {
             view.findNavController().navigate(R.id.action_login_to_register)
+        }
+
+        linkForgetPassword.setOnClickListener{
+            view.findNavController().navigate(R.id.action_login_to_forgetPassword)
         }
     }
 
@@ -111,17 +117,10 @@ class  Login : Fragment() {
                         val email1 = account.email
 
                         if (username.equals(username1) && password.equals(password1)) {
-                            mAuth.signInWithEmailAndPassword(email1, password)
-                            navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
-                            navigationView.findViewById<TextView>(R.id.emailView).text = "Email"
-                            Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
-                            view!!.findNavController().navigate(R.id.action_login_to_home)
+                            LoginWithAuth(email1,password)
+                            break
                         } else {
-                            Toast.makeText(
-                                activity,
-                                "Invalid Username or password",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -131,29 +130,34 @@ class  Login : Fragment() {
             })
         }else{
             //Login with email and password, firebase authentication
-            mAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(object: OnCompleteListener<AuthResult>{
-                override fun onComplete(task: Task<AuthResult>) {
-                    if(task.isSuccessful){
-                        navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
-                        navigationView.findViewById<TextView>(R.id.emailView).text = "Email"
-                        Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
-                        view!!.findNavController().navigate(R.id.action_login_to_home)
-
-                    }else{
-                        Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            })
+            LoginWithAuth(username,password)
         }
 
     }
 
-
-
+    private fun LoginWithAuth(email: String, password:String){
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(object: OnCompleteListener<AuthResult>{
+            override fun onComplete(task: Task<AuthResult>) {
+                if(task.isSuccessful){
+                    navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
+                    navigationView.findViewById<TextView>(R.id.emailView).text = email
+                    Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
+                    view!!.findNavController().navigate(R.id.action_login_to_home)
+                }else{
+                    Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
+                }
+            }
+    })
+    }
     private fun isEmailValid(email: String): Boolean {
         val expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$"
         val pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE)
         val matcher = pattern.matcher(email)
         return matcher.matches()
     }
-}
+
+    }
+
+
+
+
