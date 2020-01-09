@@ -3,6 +3,7 @@ package com.example.recycleplasticchecker
 
 import android.content.ClipData
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -31,6 +32,8 @@ class  Login : Fragment() {
 
     class Account(val name: String = "", val email: String = "", val username: String = "", val password: String = "")
 
+    lateinit var rellay1:RelativeLayout
+    lateinit var rellay2:RelativeLayout
     lateinit var editUsername: EditText
     lateinit var editPassword: EditText
     lateinit var btnLogin: Button
@@ -39,8 +42,23 @@ class  Login : Fragment() {
     lateinit var navMenu : Menu
     lateinit var navigationView : NavigationView
 
+
+    var handler : Handler = Handler()
+    var runnable : Runnable = object  : Runnable{
+        override  fun run(){
+            rellay1.visibility = View.VISIBLE
+            rellay2.visibility = View.VISIBLE
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        rellay1 = activity!!.findViewById(R.id.rellay1)
+        rellay2 = activity!!.findViewById(R.id.rellay2)
+
+        handler.postDelayed(runnable, 1250)
 
         editUsername = activity!!.findViewById(R.id.editUsername)
         editPassword= activity!!.findViewById(R.id.editPassword)
