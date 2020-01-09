@@ -38,6 +38,7 @@ class  Login : Fragment() {
     lateinit var editPassword: EditText
     lateinit var btnLogin: Button
     lateinit var linkRegisterPage: TextView
+    lateinit var linkForgetPassword: TextView
     lateinit var mAuth : FirebaseAuth
     lateinit var navMenu : Menu
     lateinit var navigationView : NavigationView
@@ -64,6 +65,7 @@ class  Login : Fragment() {
         editPassword= activity!!.findViewById(R.id.editPassword)
         btnLogin = activity!!.findViewById(R.id.btnLogin)
         linkRegisterPage = activity!!.findViewById(R.id.linkRegisterPage)
+        linkForgetPassword = activity!!.findViewById(R.id.linkForgetPassword)
 
         //to hide item in navigation once logged in
         navigationView = activity!!.findViewById(R.id.navView)
@@ -75,6 +77,10 @@ class  Login : Fragment() {
 
         linkRegisterPage.setOnClickListener {
             view.findNavController().navigate(R.id.action_login_to_register)
+        }
+
+        linkForgetPassword.setOnClickListener{
+            view.findNavController().navigate(R.id.action_login_to_forgetPassword)
         }
     }
 

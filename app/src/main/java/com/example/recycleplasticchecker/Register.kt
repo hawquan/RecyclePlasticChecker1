@@ -82,7 +82,7 @@ class Register : Fragment() {
         val cpassword = editConfirmPassword.text.toString().trim()
         val point = 0
 
-        if (name.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || cpassword.isEmpty()) {
+        if(name.isEmpty() && email.isEmpty() && username.isEmpty() && password.isEmpty() && cpassword.isEmpty()) {
             editName.error = "Please enter a name"
             editEmail.error = "Please enter an email"
             editUsername.error = "Please enter a username"
@@ -91,7 +91,32 @@ class Register : Fragment() {
             return
         }
 
-        if (password != cpassword) {
+        if(name.isEmpty()){
+            editName.error = "Please enter a name"
+            return
+        }
+
+        if(email.isEmpty()){
+            editEmail.error = "Please enter an email"
+            return
+        }
+
+        if(username.isEmpty()){
+            editUsername.error = "Please enter a username"
+            return
+        }
+
+        if(password.isEmpty()){
+            editPassword.error = "Please enter a password"
+            return
+        }
+
+        if(cpassword.isEmpty()){
+            editConfirmPassword.error = "Please enter a confirm password"
+            return
+        }
+
+        if(password != cpassword) {
             editConfirmPassword.error = "The password is not same"
             return
         }
