@@ -1,10 +1,8 @@
 package com.example.recycleplasticchecker
 
 
-import android.content.ClipData
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -21,34 +19,40 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_register.view.*
 import java.util.regex.Pattern
-
+import kotlinx.android.synthetic.main.fragment_login.view.*
 
 /**
  * A simple [Fragment] subclass.
  */
 
-class  Login : Fragment() {
+class Login : androidx.fragment.app.Fragment() {
 
-    class Account(val name: String = "", val email: String = "", val username: String = "", val password: String = "")
+    class Account(
+        val name: String = "",
+        val email: String = "",
+        val username: String = "",
+        val password: String = ""
+    )
 
-    lateinit var rellay1:RelativeLayout
-    lateinit var rellay2:RelativeLayout
+    lateinit var rellay1: RelativeLayout
+    lateinit var rellay2: RelativeLayout
     lateinit var editUsername: EditText
     lateinit var editPassword: EditText
     lateinit var btnLogin: Button
     lateinit var linkRegisterPage: TextView
     lateinit var linkForgetPassword: TextView
-    lateinit var mAuth : FirebaseAuth
-    lateinit var navMenu : Menu
-    lateinit var navigationView : NavigationView
-    lateinit var btnProfile : Button
-    lateinit var btnRedeem : Button
+    lateinit var mAuth: FirebaseAuth
+    lateinit var navMenu: Menu
+    lateinit var navigationView: NavigationView
+    lateinit var btnProfile: Button
+    lateinit var btnRedeem: Button
 
 
-    var handler : Handler = Handler()
-    var runnable : Runnable = object  : Runnable{
-        override  fun run(){
+    var handler: Handler = Handler()
+    var runnable: Runnable = object : Runnable {
+        override fun run() {
             rellay1.visibility = View.VISIBLE
             rellay2.visibility = View.VISIBLE
         }
@@ -64,7 +68,7 @@ class  Login : Fragment() {
         handler.postDelayed(runnable, 1250)
 
         editUsername = activity!!.findViewById(R.id.editUsername)
-        editPassword= activity!!.findViewById(R.id.editPassword)
+        editPassword = activity!!.findViewById(R.id.editPassword)
         btnLogin = activity!!.findViewById(R.id.btnLogin)
         linkRegisterPage = activity!!.findViewById(R.id.linkRegisterPage)
         linkForgetPassword = activity!!.findViewById(R.id.linkForgetPassword)
@@ -73,8 +77,7 @@ class  Login : Fragment() {
         //to hide item in navigation once logged in
         navigationView = activity!!.findViewById(R.id.navView)
         navMenu = navigationView.menu
-        btnProfile = activity!!.findViewById(R.id.btProfile)
-        btnRedeem = activity!!.findViewById(R.id.btRedeem)
+
 
 //        navigationView = activity!!.findViewById(R.id.navView)
 //        navMenu = navigationView.menu
@@ -87,7 +90,7 @@ class  Login : Fragment() {
             view.findNavController().navigate(R.id.action_login_to_register)
         }
 
-        linkForgetPassword.setOnClickListener{
+        linkForgetPassword.setOnClickListener {
             view.findNavController().navigate(R.id.action_login_to_forgetPassword)
         }
     }
@@ -96,8 +99,9 @@ class  Login : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         mAuth = FirebaseAuth.getInstance()
+        btnProfile = activity!!.findViewById(R.id.btProfile)
+        btnRedeem = activity!!.findViewById(R.id.btRedeem)
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -112,7 +116,7 @@ class  Login : Fragment() {
         }
 
 
-        if(!isEmailValid(username)) {
+        if (!isEmailValid(username)) {
             //Login with username and password
             val database = FirebaseDatabase.getInstance().reference
 
@@ -128,41 +132,49 @@ class  Login : Fragment() {
                             mAuth.signInWithEmailAndPassword(email1, password1)
                             functionForLoggedIn()
 
-                            Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT)
+                                .show()
                             view!!.findNavController().navigate(R.id.action_login_to_home)
 
                         } else {
-                            Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                activity,
+                                "Invalid Username or password",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
+
                 override fun onCancelled(databaseError: DatabaseError) {
                     throw databaseError.toException()
                 }
             })
-        }else{
+        } else {
             //Login with email and password, firebase authentication
-            LoginWithAuth(username,password)
+            LoginWithAuth(username, password)
         }
 
     }
 
-    private fun LoginWithAuth(email: String, password:String){
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(object: OnCompleteListener<AuthResult>{
-            override fun onComplete(task: Task<AuthResult>) {
-                if(task.isSuccessful){
-                    functionForLoggedIn()
+    private fun LoginWithAuth(email: String, password: String) {
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
+                override fun onComplete(task: Task<AuthResult>) {
+                    if (task.isSuccessful) {
+                        functionForLoggedIn()
 
-                    Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
-                    view!!.findNavController().navigate(R.id.action_login_to_home)
-                }else{
-                    Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
+                        view!!.findNavController().navigate(R.id.action_login_to_home)
+                    } else {
+                        Toast.makeText(activity, "Invalid Username or password", Toast.LENGTH_SHORT)
+                            .show()
+                    }
                 }
-            }
-    })
+            })
     }
 
-    private fun functionForLoggedIn(){
+    private fun functionForLoggedIn() {
 
         //get navigation drawer and the menu
         navigationView = activity!!.findViewById(R.id.navView)
