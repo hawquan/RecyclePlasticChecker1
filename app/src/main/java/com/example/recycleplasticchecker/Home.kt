@@ -112,6 +112,7 @@ class Home : Fragment() {
         navMenu.findItem(R.id.logout).isVisible = false
         activity!!.findViewById<Button>(R.id.btProfile).isEnabled = false
         activity!!.findViewById<Button>(R.id.btRedeem).isEnabled = false
+        activity!!.findViewById<Button>(R.id.btPlasticRecycleCheck).isEnabled = false
 
         //enable login button and register button
         navMenu.findItem(R.id.login).isVisible = true
@@ -132,6 +133,7 @@ class Home : Fragment() {
         navMenu.findItem(R.id.logout).isVisible = true
         activity!!.findViewById<Button>(R.id.btProfile).isEnabled = true
         activity!!.findViewById<Button>(R.id.btRedeem).isEnabled = true
+        activity!!.findViewById<Button>(R.id.btPlasticRecycleCheck).isEnabled = true
 
         //disable login button and register button
         navMenu.findItem(R.id.login).isVisible = false

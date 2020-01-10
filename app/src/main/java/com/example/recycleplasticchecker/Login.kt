@@ -76,8 +76,8 @@ class  Login : Fragment() {
         btnProfile = activity!!.findViewById(R.id.btProfile)
         btnRedeem = activity!!.findViewById(R.id.btRedeem)
 
-        navigationView = activity!!.findViewById(R.id.navView)
-        navMenu = navigationView.menu
+//        navigationView = activity!!.findViewById(R.id.navView)
+//        navMenu = navigationView.menu
 
         btnLogin.setOnClickListener() {
             login()
