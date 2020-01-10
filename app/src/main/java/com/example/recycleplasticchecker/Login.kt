@@ -126,10 +126,8 @@ class  Login : Fragment() {
 
                         if (username.equals(username1) && password.equals(password1)) {
                             mAuth.signInWithEmailAndPassword(email1, password1)
-//                            LoginWithAuth(email1,password)
                             functionForLoggedIn()
-                            navigationView.findViewById<TextView>(R.id.usernameView).text = username
-                            navigationView.findViewById<TextView>(R.id.emailView).text = email1
+
                             Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
                             view!!.findNavController().navigate(R.id.action_login_to_home)
 
@@ -154,8 +152,7 @@ class  Login : Fragment() {
             override fun onComplete(task: Task<AuthResult>) {
                 if(task.isSuccessful){
                     functionForLoggedIn()
-                    navigationView.findViewById<TextView>(R.id.usernameView).text = "Username"
-                    navigationView.findViewById<TextView>(R.id.emailView).text = email
+
                     Toast.makeText(activity, "Login Successfully", Toast.LENGTH_SHORT).show()
                     view!!.findNavController().navigate(R.id.action_login_to_home)
                 }else{

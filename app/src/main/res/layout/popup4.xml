@@ -5,7 +5,7 @@
     android:layout_width="300dp"
     android:layout_height="450dp"
     android:layout_gravity="center"
-    android:background="@color/gradEnd"
+    android:background="@drawable/grad_redeem"
     android:orientation="vertical"
     android:padding="5dp"
     tools:context=".Redeem">
