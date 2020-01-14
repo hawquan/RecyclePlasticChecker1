@@ -15,6 +15,38 @@
       },
       "oauth_client": [
         {
+          "client_id": "390254136315-8k3i44umugs9fg03f17b8blcndnl0qe6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycleplasticchecker",
+            "certificate_hash": "4b805cf7959ea08a65186eaf77a167b6a44787b4"
+          }
+        },
+        {
+          "client_id": "390254136315-7845471v2ijim21r9tb4r2v9tb8e7rh4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycleplasticchecker",
+            "certificate_hash": "e269ee6d7bcafd11f24bde3c1874978324755d52"
+          }
+        },
+        {
+          "client_id": "390254136315-4mp6bjf8k2usps4355jnbafnhqadetan.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycleplasticchecker",
+            "certificate_hash": "ad2b0bc8326d476e630efc8a39d3881da6b1f669"
+          }
+        },
+        {
+          "client_id": "390254136315-9bktc743uvi6l093nobevfi66ru6b2cs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.recycleplasticchecker",
+            "certificate_hash": "7729330133c107771343726e3af0978a619b41cc"
+          }
+        },
+        {
           "client_id": "390254136315-vclg4mthno7aakna2rem4aqo416s0h0u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

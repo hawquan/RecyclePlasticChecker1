@@ -16,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -30,7 +31,7 @@ private const val PICK_IMAGE = 1
  */
 class PlasticRecycleCheck : Fragment() {
 
-
+    private lateinit var mAuth : FirebaseAuth
     lateinit var btnUpload: Button
     lateinit var btnChoose: Button
     lateinit var alertView: TextView
@@ -45,6 +46,8 @@ class PlasticRecycleCheck : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        mAuth = FirebaseAuth.getInstance()
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_plastic_recycle_check, container, false)
     }
@@ -106,7 +109,7 @@ class PlasticRecycleCheck : Fragment() {
 
     private fun StoreLink(url: String) {
         var databasereference: DatabaseReference =
-            FirebaseDatabase.getInstance().reference.child("UserOne");
+            FirebaseDatabase.getInstance().reference.child("UserOne").child(mAuth.currentUser!!.uid);
         var hashMap: HashMap<String, String> = HashMap()
         hashMap.put("Imglink", url)
 

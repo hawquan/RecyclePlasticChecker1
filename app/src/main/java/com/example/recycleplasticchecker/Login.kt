@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_register.view.*
 import java.util.regex.Pattern
 import kotlinx.android.synthetic.main.fragment_login.view.*
+import java.lang.NullPointerException
 
 /**
  * A simple [Fragment] subclass.
@@ -100,8 +101,14 @@ class Login : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mAuth = FirebaseAuth.getInstance()
-        btnProfile = activity!!.findViewById(R.id.btProfile)
-        btnRedeem = activity!!.findViewById(R.id.btRedeem)
+
+        try{
+            btnProfile = activity!!.findViewById(R.id.btProfile)
+            btnRedeem = activity!!.findViewById(R.id.btRedeem)
+        }catch(e : IllegalStateException){
+
+        }
+
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
@@ -183,8 +190,13 @@ class Login : androidx.fragment.app.Fragment() {
 
         //enable logout and profile button, redeem button
         navMenu.findItem(R.id.logout).isVisible = true
-        btnProfile.isEnabled = true
-        btnRedeem.isEnabled = true
+        try{
+            btnProfile.isEnabled = true
+            btnRedeem.isEnabled = true
+        }catch(e : UninitializedPropertyAccessException){
+
+        }
+
 
         //disable login button and register button
         navMenu.findItem(R.id.login).isVisible = false
