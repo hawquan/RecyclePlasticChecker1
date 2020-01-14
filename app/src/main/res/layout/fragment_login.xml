@@ -62,7 +62,7 @@
                         android:background="@drawable/et_bg"
                         android:ems="10"
                         android:fontFamily="sans-serif-medium"
-                        android:hint="Username / E-Mail"
+                        android:hint="E-Mail"
                         android:inputType="textPersonName"
                         android:paddingLeft="15dp"
                         android:paddingRight="15dp"
